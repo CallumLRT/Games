@@ -1,6 +1,9 @@
 from vector import Vector
 
-import simplegui2pygamemodule as simplegui
+try:
+    import simplegui
+except ImportError:
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 import pygame
 
 
