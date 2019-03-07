@@ -12,7 +12,9 @@ except ImportError:
 
 from vector import Vector
 import globals
+
 CANVAS_DIMS = globals.CANVAS_DIMS
+
 
 class Wheel:
     def __init__(self):

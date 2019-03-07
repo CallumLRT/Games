@@ -12,6 +12,7 @@ except ImportError:
 
 from vector import Vector
 
+
 class Interaction:
     def __init__(self, wheel, keyboard):
         self.wheel = wheel
