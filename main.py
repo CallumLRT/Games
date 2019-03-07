@@ -4,7 +4,7 @@ try:
     import simplegui
 except ImportError:
     try:
-        import simpleguics2pygame as simplegui
+        import simplegui2pygame as simplegui
     except ImportError:
         try:
             import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
