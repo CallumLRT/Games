@@ -3,7 +3,14 @@ from vector import Vector
 try:
     import simplegui
 except ImportError:
-    import simplegui2pygamemodule as simplegui
+    import simpleguics2pygame as simplegui
+    try:
+        import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
+    except ImportError:
+        print("rip")
+        exit()
+
+
 import pygame
 
 
