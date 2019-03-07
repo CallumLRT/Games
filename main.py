@@ -44,18 +44,28 @@ class Keyboard:
     def __init__(self):
         self.right = False
         self.left = False
+        self.down = False
+        self.up = False
 
     def keyDown(self, key):
         if key == simplegui.KEY_MAP['right']:
             self.right = True
         if key == simplegui.KEY_MAP['left']:
             self.left = True
+        if key == simplegui.KEY_MAP['up']:
+            self.up = True
+        if key == simplegui.KEY_MAP['down']:
+            self.down = True
 
     def keyUp(self, key):
         if key == simplegui.KEY_MAP['right']:
             self.right = False
         if key == simplegui.KEY_MAP['left']:
             self.left = False
+        if key == simplegui.KEY_MAP['up']:
+            self.up = False
+        if key == simplegui.KEY_MAP['down']:
+            self.down = False
 
 
 class Interaction:
@@ -68,6 +78,10 @@ class Interaction:
             self.wheel.vel.add(Vector(1, 0))
         if self.keyboard.left:
             self.wheel.vel.add(Vector(-1, 0))
+        if self.keyboard.down:
+            self.wheel.vel.add(Vector(0, 1))
+        if self.keyboard.up:
+            self.wheel.vel.add(Vector(0, -1))
 
 
 CANVAS_DIMS = (600, 400)
