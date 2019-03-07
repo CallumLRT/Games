@@ -7,6 +7,7 @@ except ImportError:
 import pygame
 
 
+
 class Wheel:
     def __init__(self):
         self.IMG = simplegui.load_image('images/wheel.png')
@@ -28,12 +29,8 @@ class Wheel:
             canvas.draw_image(self.IMG, (256, 256), (512, 512), self.pos.get_p(), self.IMG_Size, self.imgRot)
         else:
             self.pos.x = -self.imgRadius
-try:
-    import simplegui
-except ImportError:
-    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
-import random
+
 
 WIDTH = 500
 HEIGHT = 500
