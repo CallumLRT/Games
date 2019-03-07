@@ -10,7 +10,7 @@ except ImportError:
             import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
         except ImportError:
             print("rip")
-
+            exit()
 
 import pygame
 
