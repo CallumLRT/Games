@@ -3,12 +3,10 @@ from vector import Vector
 try:
     import simplegui
 except ImportError:
-    import simpleguics2pygame as simplegui
     try:
-        import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
+        import simpleguics2pygame as simplegui
     except ImportError:
-        print("rip")
-        exit()
+        import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 
 import pygame
