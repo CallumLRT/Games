@@ -3,9 +3,8 @@ from vector import Vector
 try:
     import simplegui
 except ImportError:
-    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
+    import simplegui2pygamemodule as simplegui
 import pygame
-
 
 
 class Wheel:
@@ -30,40 +29,64 @@ class Wheel:
         else:
             self.pos.x = -self.imgRadius
 
+    def update(self):
+        self.pos.add(self.vel)
+        self.vel.multiply(0.9)
+        if (self.vel.x < -0.005):
+            self.STEP = 0.5
+        elif (self.vel.x > 0.005):
+            self.STEP = -0.5
+        else:
+            self.STEP = 0
 
 
-WIDTH = 500
-HEIGHT = 500
-a = 0
-b = 0
+class Keyboard:
+    def __init__(self):
+        self.right = False
+        self.left = False
+
+    def keyDown(self, key):
+        if key == simplegui.KEY_MAP['right']:
+            self.right = True
+        if key == simplegui.KEY_MAP['left']:
+            self.left = True
+
+    def keyUp(self, key):
+        if key == simplegui.KEY_MAP['right']:
+            self.right = False
+        if key == simplegui.KEY_MAP['left']:
+            self.left = False
 
 
-def randCol():
-    r = random.randrange(0, 256)
-    g = random.randrange(0, 256)
-    b = random.randrange(0, 256)
-    return 'rgb(' + str(r) + ',' + str(g) + ',' + str(b) + ')'
+class Interaction:
+    def __init__(self, wheel, keyboard):
+        self.wheel = wheel
+        self.keyboard = keyboard
+
+    def update(self):
+        if self.keyboard.right:
+            self.wheel.vel.add(Vector(1, 0))
+        if self.keyboard.left:
+            self.wheel.vel.add(Vector(-1, 0))
 
 
-# Drawing handler:
-# this function is called 60 times per second
+CANVAS_DIMS = (600, 400)
+
+kbd = Keyboard()
+wheel = Wheel()
+inter = Interaction(wheel, kbd)
+
+
 def draw(canvas):
-    global a
-    global b
-    if (a % 60 == 0):
-        canvas.draw_circle((WIDTH / 2, HEIGHT / 2), 20, 40, 'green', 'white')
-        canvas.draw_circle((240, 240), 20, 40, 'white', 'white')
-        a = a + 1
-    else:
-        canvas.draw_circle((WIDTH / 2, HEIGHT / 2), 20, 40, 'red', 'white')
-        canvas.draw_circle((240, 240), 20, 40, 'blue', 'white')
-        a = a + 1
-    b = b + 1
+    pygame.time.Clock().tick_busy_loop(60)
+    inter.update()
+    wheel.update()
+    wheel.draw(canvas)
 
 
-# Create a frame and assign the callback to the event handler
-frame = simplegui.create_frame("Colours", WIDTH, HEIGHT)
+frame = simplegui.create_frame('Interactions', CANVAS_DIMS[0], CANVAS_DIMS[1])
+frame.set_canvas_background('white')
 frame.set_draw_handler(draw)
-
-# Start the frame animation
+frame.set_keydown_handler(kbd.keyDown)
+frame.set_keyup_handler(kbd.keyUp)
 frame.start()
