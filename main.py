@@ -1,42 +1,113 @@
+from vector import Vector
+
 try:
     import simplegui
 except ImportError:
-    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-
-import random
-
-WIDTH = 500
-HEIGHT = 500
-a = 0
-b = 0
+    import simpleguics2pygame as simplegui
+    try:
+        import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
+    except ImportError:
+        print("rip")
+        exit()
 
 
-def randCol():
-    r = random.randrange(0, 256)
-    g = random.randrange(0, 256)
-    b = random.randrange(0, 256)
-    return 'rgb(' + str(r) + ',' + str(g) + ',' + str(b) + ')'
+import pygame
 
 
-# Drawing handler:
-# this function is called 60 times per second
+class Wheel:
+    def __init__(self):
+        self.IMG = simplegui.load_image('images/wheel.png')
+        self.IMG_CENTRE = (256, 256)
+        self.IMG_DIMS = (512, 512)
+        self.vel = Vector(3, 0)
+        self.STEP = 0
+        self.imgRadius = 64
+        self.IMG_Size = (128, 128)
+        self.pos = Vector(CANVAS_DIMS[0] / 2, 2 * CANVAS_DIMS[1] / 3.)
+        self.imgRot = 0
+
+    def draw(self, canvas):
+        if (self.pos.x < -self.imgRadius):
+            self.pos.x = CANVAS_DIMS[0] + self.imgRadius
+        if (self.pos.x <= (CANVAS_DIMS[0] + self.imgRadius)):
+
+            self.imgRot += self.STEP
+            canvas.draw_image(self.IMG, (256, 256), (512, 512), self.pos.get_p(), self.IMG_Size, self.imgRot)
+        else:
+            self.pos.x = -self.imgRadius
+
+    def update(self):
+        self.pos.add(self.vel)
+        self.vel.multiply(0.9)
+        if (self.vel.x < -0.005):
+            self.STEP = 0.5
+        elif (self.vel.x > 0.005):
+            self.STEP = -0.5
+        else:
+            self.STEP = 0
+
+
+class Keyboard:
+    def __init__(self):
+        self.right = False
+        self.left = False
+        self.down = False
+        self.up = False
+
+    def keyDown(self, key):
+        if key == simplegui.KEY_MAP['right']:
+            self.right = True
+        if key == simplegui.KEY_MAP['left']:
+            self.left = True
+        if key == simplegui.KEY_MAP['up']:
+            self.up = True
+        if key == simplegui.KEY_MAP['down']:
+            self.down = True
+
+    def keyUp(self, key):
+        if key == simplegui.KEY_MAP['right']:
+            self.right = False
+        if key == simplegui.KEY_MAP['left']:
+            self.left = False
+        if key == simplegui.KEY_MAP['up']:
+            self.up = False
+        if key == simplegui.KEY_MAP['down']:
+            self.down = False
+
+
+class Interaction:
+    def __init__(self, wheel, keyboard):
+        self.wheel = wheel
+        self.keyboard = keyboard
+
+    def update(self):
+        if self.keyboard.right:
+            self.wheel.vel.add(Vector(1, 0))
+        if self.keyboard.left:
+            self.wheel.vel.add(Vector(-1, 0))
+        if self.keyboard.down:
+            self.wheel.vel.add(Vector(0, 1))
+        if self.keyboard.up:
+            self.wheel.vel.add(Vector(0, -1))
+
+
+CANVAS_DIMS = (600, 400)
+
+kbd = Keyboard()
+wheel = Wheel()
+inter = Interaction(wheel, kbd)
+
+
 def draw(canvas):
-    global a
-    global b
-    if (a % 60 == 0):
-        canvas.draw_circle((WIDTH / 2, HEIGHT / 2), 20, 40, 'green', 'white')
-        canvas.draw_circle((240, 240), 20, 40, 'white', 'white')
-        a = a + 1
-    else:
-        canvas.draw_circle((WIDTH / 2, HEIGHT / 2), 20, 40, 'red', 'white')
-        canvas.draw_circle((240, 240), 20, 40, 'blue', 'white')
-        a = a + 1
-    b = b + 1
+    pygame.time.Clock().tick_busy_loop(60)
+    inter.update()
+    wheel.update()
+    wheel.draw(canvas)
 
 
-# Create a frame and assign the callback to the event handler
-frame = simplegui.create_frame("Colours", WIDTH, HEIGHT)
+frame = simplegui.create_frame('Interactions', CANVAS_DIMS[0], CANVAS_DIMS[1])
+frame.set_canvas_background('white')
 frame.set_draw_handler(draw)
-
-# Start the frame animation
+frame.set_keydown_handler(kbd.keyDown)
+frame.set_keyup_handler(kbd.keyUp)
 frame.start()
