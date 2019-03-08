@@ -26,12 +26,13 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 kbd = Keyboard()
 wheel = Wheel()
 walls = Walls()
-inter = PlayerInteraction(wheel, kbd)
+playerInter = PlayerInteraction(wheel, kbd)
+inter = Interactions()
 
 
 def draw(canvas):
     #pygame.time.Clock().tick_busy_loop(60)
-    inter.update()
+    playerInter.update()
     wheel.update()
     wheel.draw(canvas)
     walls.draw(canvas)
