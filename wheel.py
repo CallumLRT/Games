@@ -1,14 +1,8 @@
 try:
     import simplegui
 except ImportError:
-    try:
-        import simplegui2pygamemodule as simplegui
-    except ImportError:
-        try:
-            import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-        except ImportError:
-            print("R.I.P")
-            exit()
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
+
 
 from vector import Vector
 import globals
