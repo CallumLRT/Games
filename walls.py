@@ -15,10 +15,11 @@ import globals
 
 CANVAS_DIMS = globals.CANVAS_DIMS
 
-class walls:
+class Walls:
     def __init__(self):
+        pass
 
-    def draw(canvas):
+    def draw(self, canvas):
         canvas.draw_line((0, 400), (0, 0), 20, 'red')
         canvas.draw_line((600, 0), (0, 0), 20, 'Red')
         canvas.draw_line((600, 0), (600, 400), 20, 'Red')

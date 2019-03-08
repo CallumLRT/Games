@@ -17,7 +17,7 @@ from vector import Vector
 from interaction import Interaction
 from keyboard import Keyboard
 from wheel import Wheel
-from walls import walls
+from walls import Walls
 
 # constants
 # add them in the global files so they can be used across multiple files
@@ -25,6 +25,7 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 
 kbd = Keyboard()
 wheel = Wheel()
+walls = Walls()
 inter = Interaction(wheel, kbd)
 
 
