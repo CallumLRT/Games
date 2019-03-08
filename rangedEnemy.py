@@ -3,11 +3,11 @@ try:
 except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
-from vector import Vector
+#from vector import Vector
 from enemy import Enemy
 from projectile import Projectile
 
-
+# TODO make enemy stay at certain distance away from player
 class RangedEnemy(Enemy):
     def __init__(self, pos):
         super().__init__("https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/bluecircle.png",
