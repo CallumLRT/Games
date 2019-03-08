@@ -17,6 +17,7 @@ from vector import Vector
 from interaction import Interaction
 from keyboard import Keyboard
 from wheel import Wheel
+from walls import walls
 
 # constants
 # add them in the global files so they can be used across multiple files
@@ -32,6 +33,7 @@ def draw(canvas):
     inter.update()
     wheel.update()
     wheel.draw(canvas)
+    walls.draw(canvas)
 
 
 frame = simplegui.create_frame('Interactions', CANVAS_DIMS[0], CANVAS_DIMS[1])
