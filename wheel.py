@@ -7,7 +7,7 @@ except ImportError:
         try:
             import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
         except ImportError:
-            print("rip")
+            print("R.I.P")
             exit()
 
 from vector import Vector
