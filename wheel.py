@@ -3,6 +3,7 @@ try:
 except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
+
 from vector import Vector
 import globals
 
@@ -27,7 +28,8 @@ class Wheel:
         if self.pos.x <= (CANVAS_DIMS[0] + self.imgRadius):
 
             self.imgRot += self.STEP
-            canvas.draw_image(self.IMG, (256, 256), (512, 512), self.pos.get_p(), self.IMG_Size, self.imgRot)
+            canvas.draw_circle(self.pos.get_p(), 20, 12, 'Green')
+            #canvas.draw_image(self.IMG, (256, 256), (512, 512), self.pos.get_p(), self.IMG_Size, self.imgRot)
         else:
             self.pos.x = -self.imgRadius
 
