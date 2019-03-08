@@ -28,7 +28,7 @@ inter = Interaction(wheel, kbd)
 
 
 def draw(canvas):
-    pygame.time.Clock().tick_busy_loop(60)
+    #pygame.time.Clock().tick_busy_loop(60)
     inter.update()
     wheel.update()
     wheel.draw(canvas)
