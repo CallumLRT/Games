@@ -13,8 +13,8 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 class Wheel:
     def __init__(self):
         self.IMG = simplegui.load_image('https://img.itch.zone/aW1hZ2UvNzQ5MjIvMzQ3MTI2LmpwZw==/original/fcga2A.jpg')
-        self.IMG_CENTRE = (256, 256)
-        self.IMG_DIMS = (512, 512)
+        self.IMG_DIMS = (1408, 1360)
+        self.IMG_CENTRE = (self.IMG_DIMS[0]/2, self.IMG_DIMS[1]/2)
         self.vel = Vector(3, 0)
         self.STEP = 0
         self.imgRadius = 64
@@ -30,7 +30,7 @@ class Wheel:
             self.imgRot += self.STEP
             #canvas.draw_circle(self.pos.get_p(), 20, 12, 'Green')
             #canvas.draw_image(self.IMG, (256, 256), (512, 512), self.pos.get_p(), self.IMG_Size, self.imgRot)
-            canvas.draw_image(self.IMG, (1521 / 2, 1818 / 2), (1521, 1818), self.pos.get_p(), (100, 100))
+            canvas.draw_image(self.IMG, self.IMG_CENTRE, self.IMG_DIMS, self.pos.get_p(), (100,100))
         else:
             self.pos.x = -self.imgRadius
 
