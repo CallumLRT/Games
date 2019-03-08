@@ -21,9 +21,18 @@ wheel = Wheel()
 walls = Walls()
 
 class Interactions:
-    def __init__(self):
-        pass
+    def __init__(self, wheel, walls):
+        self.wheel = wheel
+        self.walls = walls
+        self.inCollision = False
 
-    def checkCollisionWith(self, other):
+    def distanceTo(self, pos):
+        return (self.pos - pos).length()
+
+    def update(self):
+        if (self.walls.distanceTo(self.wheel.pos) < self.walls.thickness)
+
+    #def checkCollisionWith(self, other):
+    #    if wheel.distanceTo(other.pos)
 
 
