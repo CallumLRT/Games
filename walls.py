@@ -27,7 +27,7 @@ class Walls:
         self.normal = rotateAnti(self.unit)
 
     def draw(self, canvas):
-        canvas.draw_line(self.pA.getP(), self.pB.getP(), self.thickness, "red")
+        canvas.draw_line(self.pA.get_p(), self.pB.get_p(), self.thickness, "red")
 
     def distanceTo(self, pos):
         posToA = pos - self.pA

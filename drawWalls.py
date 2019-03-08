@@ -16,14 +16,20 @@ import globals
 
 CANVAS_DIMS = globals.CANVAS_DIMS
 
-one = Walls(Vector((0, 400), (0, 0)), Vector((600, 0), (0, 0)))
+one = Walls(Vector(0, 0), Vector(600, 0))
 
-two = Walls(Vector((600, 0), (600, 400)), Vector((0, 400), (600, 400)))
+two = Walls(Vector(0, 0), Vector(0, 400))
+
+three = Walls(Vector(0, 400), Vector(600, 400))
+
+four = Walls(Vector(600, 0), Vector(600, 400))
 
 class DrawWalls:
     def __init__(self):
         pass
 
-    def draw(self,canvas):
+    def draw(canvas):
         one.draw(canvas)
         two.draw(canvas)
+        three.draw(canvas)
+        four.draw(canvas)
