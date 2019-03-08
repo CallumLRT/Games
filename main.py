@@ -3,8 +3,6 @@ try:
 except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
-import pygame
-
 import globals
 from vector import Vector
 from interaction import Interaction
@@ -21,7 +19,6 @@ inter = Interaction(wheel, kbd)
 
 
 def draw(canvas):
-    #pygame.time.Clock().tick_busy_loop(60)
     inter.update()
     wheel.update()
     wheel.draw(canvas)
