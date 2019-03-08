@@ -14,7 +14,7 @@ import pygame
 
 import globals
 from vector import Vector
-from interaction import Interaction
+from playerInteraction import PlayerInteraction
 from keyboard import Keyboard
 from wheel import Wheel
 from walls import Walls
@@ -26,7 +26,7 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 kbd = Keyboard()
 wheel = Wheel()
 walls = Walls()
-inter = Interaction(wheel, kbd)
+inter = PlayerInteraction(wheel, kbd)
 
 
 def draw(canvas):
