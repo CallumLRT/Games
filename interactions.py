@@ -30,9 +30,11 @@ class Interactions:
         return (self.pos - pos).length()
 
     def update(self):
-        if (self.walls.distanceTo(self.wheel.pos) < self.walls.thickness)
-
-    #def checkCollisionWith(self, other):
-    #    if wheel.distanceTo(other.pos)
+        if (self.walls.distanceTo(self.wheel.pos) < self.walls.thickness + self.wheel.imgRadius and self.line.covers(self.wheel.pos)):
+            if not self.inCollision:
+                self.wheel.bounce(self.wheel.normal)
+                self.inCollision = True
+            else:
+                self.inCollision = False
 
 

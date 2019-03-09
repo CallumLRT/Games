@@ -26,9 +26,9 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 
 kbd = Keyboard()
 wheel = Wheel()
-#walls = Walls()
+walls = Walls()
 playerInter = PlayerInteraction(wheel, kbd)
-#inter = Interactions()
+inter = Interactions(wheel, walls)
 drawWalls = DrawWalls()
 
 def draw(canvas):
