@@ -3,7 +3,6 @@ try:
 except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
-from vector import Vector
 import math
 
 
@@ -19,11 +18,11 @@ class Projectile:
         self.imgRot = math.atan(self.vel.y / self.vel.x)
         if self.vel.x < 0:
             self.imgRot = math.pi + self.imgRot
-        self.frameLife = frame_life
+        self.frame_life = frame_life
 
     def draw(self, canvas):
         canvas.draw_image(self.IMG, self.IMG_CENTRE, self.IMG_DIMS, self.pos.get_p(), self.DIMS, self.imgRot)
 
     def update(self):
         self.pos.add(self.vel)
-        self.frameLife -= 1
+        self.frame_life -= 1
