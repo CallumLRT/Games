@@ -18,6 +18,9 @@ from playerInteraction import PlayerInteraction
 from keyboard import Keyboard
 from wheel import Wheel
 from drawWalls import DrawWalls
+from interactions import Interactions
+from walls import Walls
+
 
 
 # constants
@@ -26,9 +29,9 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 
 kbd = Keyboard()
 wheel = Wheel()
-walls = Walls()
+#walls = Walls()
 playerInter = PlayerInteraction(wheel, kbd)
-inter = Interactions(wheel, walls)
+inter = Interactions(wheel)
 drawWalls = DrawWalls()
 
 def draw(canvas):
@@ -37,6 +40,7 @@ def draw(canvas):
     wheel.update()
     wheel.draw(canvas)
     DrawWalls.draw(canvas)
+    inter.update()
 
 
 frame = simplegui.create_frame('Interactions', CANVAS_DIMS[0], CANVAS_DIMS[1])

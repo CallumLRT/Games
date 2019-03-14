@@ -28,6 +28,9 @@ class DrawWalls:
     def __init__(self):
         pass
 
+    def get_walls(self):
+        return [one, two, three, four]
+
     def draw(canvas):
         one.draw(canvas)
         two.draw(canvas)
