@@ -21,6 +21,7 @@ class Wheel:
         self.IMG_Size = (128, 128)
         self.pos = Vector(CANVAS_DIMS[0] / 2, 2 * CANVAS_DIMS[1] / 3.)
         self.imgRot = 0
+        self.radius = 10
 
     def draw(self, canvas):
         if self.pos.x < -self.imgRadius:
@@ -34,8 +35,12 @@ class Wheel:
         else:
             self.pos.x = -self.imgRadius
 
+    def bounce(self, normal):
+        self.vel.reflect(normal)
+
     def update(self):
         self.pos.add(self.vel)
+        self.wrap()
         self.vel.multiply(0.9)
         if self.vel.x < -0.005:
             self.STEP = 0.5
@@ -43,3 +48,7 @@ class Wheel:
             self.STEP = -0.5
         else:
             self.STEP = 0
+
+    def wrap(self):
+        self.pos.x %= CANVAS_DIMS[0]
+        self.pos.y %= CANVAS_DIMS[1]
