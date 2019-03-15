@@ -21,6 +21,7 @@ class Wheel:
         self.IMG_Size = (128, 128)
         self.pos = Vector(CANVAS_DIMS[0] / 2, 2 * CANVAS_DIMS[1] / 3.)
         self.imgRot = 0
+        self.radius = 20
 
     def draw(self, canvas):
         if self.pos.x < -self.imgRadius:
@@ -28,9 +29,8 @@ class Wheel:
         if self.pos.x <= (CANVAS_DIMS[0] + self.imgRadius):
 
             self.imgRot += self.STEP
-            #canvas.draw_circle(self.pos.get_p(), 20, 12, 'Green')
-            #canvas.draw_image(self.IMG, (256, 256), (512, 512), self.pos.get_p(), self.IMG_Size, self.imgRot)
-            canvas.draw_image(self.IMG, (1521 / 2, 1818 / 2), (1521, 1818), self.pos.get_p(), (100, 100))
+            canvas.draw_circle(self.pos.get_p(), 20, 12, 'green')
+            # canvas.draw_image(self.IMG, (256, 256), (512, 512), self.pos.get_p(), self.IMG_Size, self.imgRot)
         else:
             self.pos.x = -self.imgRadius
 
