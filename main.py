@@ -9,6 +9,7 @@ from keyboard import Keyboard
 from wheel import Wheel
 from meleeEnemy import MeleeEnemy
 from rangedEnemy import RangedEnemy
+from room import Room
 
 # constants
 # add them in the global files so they can be used across multiple files
@@ -17,6 +18,7 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 kbd = Keyboard()
 wheel = Wheel()
 inter = Interaction(wheel, kbd)
+room = Room()
 
 melee_enemies = []
 melee_enemies.append(MeleeEnemy((500, 100)))
@@ -27,6 +29,7 @@ fireballs = []
 
 
 def draw(canvas):
+    room.draw(canvas)
     inter.update()
     wheel.update()
     wheel.draw(canvas)
