@@ -13,7 +13,6 @@ class Enemy:
         self.IMG_DIMS = img_dims
         self.IMG_CENTRE = (img_dims[0] / 2, img_dims[1] / 2)
         self.DIMS = dims
-        self.DIMS_CENTRE = (dims[0] / 2, dims[1] / 2)
         self.vel = Vector(0, 0)
         self.pos = Vector(pos[0], pos[1])
         self.speed = speed
