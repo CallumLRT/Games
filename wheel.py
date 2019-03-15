@@ -1,14 +1,8 @@
 try:
     import simplegui
 except ImportError:
-    try:
-        import simplegui2pygamemodule as simplegui
-    except ImportError:
-        try:
-            import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-        except ImportError:
-            print("R.I.P")
-            exit()
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
+
 
 from vector import Vector
 import globals
@@ -18,7 +12,7 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 
 class Wheel:
     def __init__(self):
-        self.IMG = simplegui.load_image('images/wheel.png')
+        self.IMG = simplegui.load_image('https://img.itch.zone/aW1hZ2UvNzQ5MjIvMzQ3MTI2LmpwZw==/original/fcga2A.jpg')
         self.IMG_CENTRE = (256, 256)
         self.IMG_DIMS = (512, 512)
         self.vel = Vector(3, 0)
@@ -34,8 +28,9 @@ class Wheel:
         if self.pos.x <= (CANVAS_DIMS[0] + self.imgRadius):
 
             self.imgRot += self.STEP
-            canvas.draw_circle(self.pos.get_p(), 20, 12, 'Green')
+            #canvas.draw_circle(self.pos.get_p(), 20, 12, 'Green')
             #canvas.draw_image(self.IMG, (256, 256), (512, 512), self.pos.get_p(), self.IMG_Size, self.imgRot)
+            canvas.draw_image(self.IMG, (1521 / 2, 1818 / 2), (1521, 1818), self.pos.get_p(), (100, 100))
         else:
             self.pos.x = -self.imgRadius
 
