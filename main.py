@@ -17,11 +17,8 @@ from vector import Vector
 from playerInteraction import PlayerInteraction
 from keyboard import Keyboard
 from wheel import Wheel
-from drawWalls import DrawWalls
-from interactions import Interactions
-from walls import Walls
-
-
+from interactions import Interaction
+from walls import Wall
 
 # constants
 # add them in the global files so they can be used across multiple files
@@ -29,18 +26,27 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 
 kbd = Keyboard()
 wheel = Wheel()
-#walls = Walls()
 playerInter = PlayerInteraction(wheel, kbd)
-inter = Interactions(wheel)
-drawWalls = DrawWalls()
+
+walls = []
+walls.append(Wall(Vector(0, 0), Vector(CANVAS_DIMS[0], 0), Vector(0, 1)))
+walls.append(Wall(Vector(CANVAS_DIMS[0], 0), Vector(CANVAS_DIMS[0], CANVAS_DIMS[1]), Vector(-1, 0)))
+walls.append(Wall(Vector(0, CANVAS_DIMS[1]), Vector(CANVAS_DIMS[0], CANVAS_DIMS[1]), Vector(0, -1)))
+walls.append(Wall(Vector(0, 0), Vector(0, CANVAS_DIMS[1]), Vector(1, 0)))
+
+wall_interactions = []
+for wall in walls:
+    wall_interactions.append(Interaction(wheel, wall))
+
 
 def draw(canvas):
-    #pygame.time.Clock().tick_busy_loop(60)
+    for wall in walls:
+        wall.draw(canvas)
+    for interaction in wall_interactions:
+        interaction.update()
     playerInter.update()
     wheel.update()
     wheel.draw(canvas)
-    DrawWalls.draw(canvas)
-    inter.update()
 
 
 frame = simplegui.create_frame('Interactions', CANVAS_DIMS[0], CANVAS_DIMS[1])

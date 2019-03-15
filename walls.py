@@ -1,40 +1,28 @@
 try:
     import simplegui
 except ImportError:
-    try:
-        import simplegui2pygamemodule as simplegui
-    except ImportError:
-        try:
-            import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-        except ImportError:
-            print("R.I.P")
-            exit()
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 from vector import Vector
-import globals
 
-CANVAS_DIMS = globals.CANVAS_DIMS
 
-def rotateAnti(v):
-    return Vector(-v.y, v.x)
-
-class Walls:
-    def __init__(self, point1, point2):
+class Wall:
+    def __init__(self, point1, point2, direction_vector):
         self.pA = point1
         self.pB = point2
         self.thickness = 20
         self.unit = (self.pB - self.pA).normalize()
-        self.normal = rotateAnti(self.unit)
+        self.normal = Vector(-self.unit.y, self.unit.x)
+        self.direction_of_player = direction_vector
 
     def draw(self, canvas):
-        canvas.draw_line(self.pA.get_p(), self.pB.get_p(), self.thickness, "red")
+        canvas.draw_line(self.pA.get_p(), self.pB.get_p(), self.thickness, "Red")
 
     def distanceTo(self, pos):
         posToA = pos - self.pA
         proj = posToA.dot(self.normal) * self.normal
         return proj.length()
 
-    #    canvas.draw_line((0, 400), (0, 0), 20, 'red')
-    #    canvas.draw_line((600, 0), (0, 0), 20, 'Red')
-    #    canvas.draw_line((600, 0), (600, 400), 20, 'Red')
-    #    canvas.draw_line((0, 400), (600, 400), 20, 'Red')
+    def covers(self, pos):
+        return ((pos - self.pA).dot(self.unit) >= 0 and
+                (pos - self.pB).dot(-self.unit) >= 0)
