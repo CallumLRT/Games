@@ -7,6 +7,7 @@ from vector import Vector
 from enemy import Enemy
 from fireball import Fireball
 import math
+from random import randint
 
 
 # TODO make enemy stay at certain distance away from player
@@ -14,7 +15,7 @@ class RangedEnemy(Enemy):
     def __init__(self, pos):
         super().__init__("https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/bluecircle.png",
                          (500, 500), (50, 50), pos, 2)
-        self.cooldown = 120
+        self.cooldown = randint(100, 140)
         self.cooldown_max = self.cooldown
 
     def shoot(self, target):
