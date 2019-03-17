@@ -9,6 +9,7 @@ from keyboard import Keyboard
 from wheel import Wheel
 from meleeEnemy import MeleeEnemy
 from rangedEnemy import RangedEnemy
+from meleeInteractionSet import *
 
 # constants
 # add them in the global files so they can be used across multiple files
@@ -21,18 +22,27 @@ inter = Interaction(wheel, kbd)
 melee_enemies = []
 melee_enemies.append(MeleeEnemy((500, 100)))
 melee_enemies.append(MeleeEnemy((100, 100)))
+meleeInterSet = MeleeInteractionSet(melee_enemies)
+
 ranged_enemies = []
 ranged_enemies.append(RangedEnemy((100, 100)))
 fireballs = []
 
 
+
 def draw(canvas):
     inter.update()
     wheel.update()
+    meleeInterSet.update()
     wheel.draw(canvas)
     for enemy in melee_enemies:
         enemy.draw(canvas)
-        enemy.target(wheel.pos)
+
+        if enemy.currentlyNotTarget:
+            enemy.daze_cycle()
+        else:
+            enemy.target(wheel.pos)
+
         enemy.update()
     for enemy in ranged_enemies:
         enemy.update()
