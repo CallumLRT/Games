@@ -27,8 +27,8 @@ class SpriteSheet:
         y = self.frameHeight*frameIndex[1] + self.frameCentreY
 
         # inside the drawing handler
-        self.dimX = dimsX
-        self.dimY = dimsY
+        self.dimX = disX
+        self.dimY = dimY
 
     def draw(self, canvas):
         canvas.draw_image(
@@ -40,6 +40,6 @@ class SpriteSheet:
         )
 
     def nextFrame(self):
-        self.frameIndex[0]=self.frameIndex[0]+1
+        self.frameIndex = (self.frameIndex[0] + 1, self.frameIndex[1])
 
 
