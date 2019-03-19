@@ -14,15 +14,16 @@ import globals
 CANVAS_DIMS = globals.CANVAS_DIMS
 
 class SpriteSheet:
-    def init(self, url, frameWidth, frameHeight, dimX, dimY, x, y):
+    def init(self, url, frameWidth, frameHeight, dimX, dimY, x, y, i, j):
         # loading the image
         self.url = url
         self.img = simplegui.load_image(url)
-        self.frameWidth = frameWidth
-        self.frameHeight = frameHeight
+        self.frameIndex = (0, 0)
+        self.maxIndex = (i, j)
+        self.frameWidth = self.img.get_width() / self.maxIndex[0]
+        self.frameHeight = self.img.get_height() / self.maxIndex[1]
         self.frameCentreX = self.frameWidth/2
         self.frameCentreY = self.frameHeight/2
-        self.frameIndex = (0, 0)
         x = self.frameWidth*self.frameIndex[0] + self.frameCentreX
         y = self.frameHeight*self.frameIndex[1] + self.frameCentreY
 
