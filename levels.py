@@ -53,4 +53,3 @@ class Levels:
             ranged.draw(canvas)
         for projectiles in Levels.Projectiles:
             projectiles.draw(canvas)
-
