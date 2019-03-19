@@ -42,5 +42,10 @@ class SpriteSheet:
 
     def nextFrame(self):
         self.frameIndex = (self.frameIndex[0] + 1, self.frameIndex[1])
+        if self.frameIndex[0] >= self.maxIndex[0]:
+            self.frameIndex = (0, self.frameIndex[1] + 1)
+        if self.frameIndex[1] >= self.maxIndex[1]:
+            self.frameIndex = (0, 0)
+        print(self.frameIndex)
 
 
