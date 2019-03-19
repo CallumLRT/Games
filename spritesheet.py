@@ -26,6 +26,7 @@ class SpriteSheet:
         self.frameCentreY = self.frameHeight/2
         x = self.frameWidth*self.frameIndex[0] + self.frameCentreX
         y = self.frameHeight*self.frameIndex[1] + self.frameCentreY
+        self.pos = (x, y)
 
         # inside the drawing handler
         self.dimX = dimX
@@ -36,7 +37,7 @@ class SpriteSheet:
             self.img,
             (self.frameWidth*self.frameIndex[0]+self.frameCentreX, self.frameHeight*self.frameIndex[1]+self.frameCentreY),
             (self.frameWidth, self.frameHeight),
-            (CANVAS_DIMS),
+            (x, y),
             (self.dimX, self.dimY)
         )
 
