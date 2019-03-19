@@ -22,14 +22,6 @@ class Levels:
     Gates = []
     GateInteractions = []
 
-    # moved to update()
-    # @staticmethod
-    # def enemy_shoot():
-    #     for enemy in Levels.RangedEnemies:
-    #         enemy.target(Levels.player.pos)
-    #         if enemy.cooldown <= 0:
-    #             Levels.Projectiles.append(enemy.shoot(Levels.player.pos))
-
     @staticmethod
     def update():
         Levels.player.update()
