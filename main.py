@@ -9,6 +9,7 @@ from interactions import Interaction
 from walls import Wall
 from levels import Levels
 from level1 import Level1
+from level2 import Level2
 
 # constants
 # add them in the global files so they can be used across multiple files
@@ -18,7 +19,10 @@ wall_interactions = []
 for wall in Levels.Walls:
     wall_interactions.append(Interaction(Levels.player, wall))
 
-level = Level1()
+level1 = Level1()
+level2 = Level2()
+level1.LoadLevel()
+
 
 
 def draw(canvas):

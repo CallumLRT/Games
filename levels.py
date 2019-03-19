@@ -22,6 +22,20 @@ class Levels:
     Gates = []
     GateInteractions = []
 
+    def LoadLevel(self, meleeEnemiesList, rangedEnemiesList, gateList):
+        Levels.MeleeEnemies = []
+        Levels.RangedEnemies = []
+        Levels.Projectiles = []
+        for enemy in meleeEnemiesList:
+            Levels.MeleeEnemies.append(enemy)
+        for enemy in rangedEnemiesList:
+            Levels.RangedEnemies.append(enemy)
+        Levels.Gates = []
+        for gate in gateList:
+            Levels.Gates.append(gate)
+        meleeEnemiesList = []
+        rangedEnemiesList = []
+
     @staticmethod
     def update():
         Levels.player.update()
@@ -38,6 +52,8 @@ class Levels:
             projectile.update()
             if projectile.frame_life <= 0:
                 Levels.Projectiles.remove(projectile)
+        for gate in Levels.Gates:
+            gate.update()
 
     @staticmethod
     def draw(canvas):
@@ -50,3 +66,5 @@ class Levels:
             projectiles.draw(canvas)
         for wall in Levels.Walls:
             wall.draw(canvas)
+        for gate in Levels.Gates:
+            gate.draw(canvas)

@@ -9,12 +9,12 @@ from rangedEnemy import RangedEnemy
 from gates import Gate
 
 
-class Level1(Levels):
+class Level2(Levels):
     def __init__(self):
         Levels.levels.append(self)
-        self.MeleeEnemies = {MeleeEnemy((500, 100))}
-        self.RangedEnemies = {}
-        self.Gates = {Gate(0, 0, 1)}
+        self.MeleeEnemies = {MeleeEnemy((500, 100)), MeleeEnemy((100, 100))}
+        self.RangedEnemies = {RangedEnemy((100, 100))}
+        self.Gates = {Gate(2, 1, 0)}
 
     def LoadLevel(self):
         super().LoadLevel(self.MeleeEnemies, self.RangedEnemies, self.Gates)
