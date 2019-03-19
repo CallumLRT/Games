@@ -21,6 +21,7 @@ class Levels:
     Walls = {Wall(0), Wall(1), Wall(2), Wall(3)}
     Gates = []
     GateInteractions = []
+    printText = 0
 
     def LoadLevel(self, meleeEnemiesList, rangedEnemiesList, gateList):
         Levels.MeleeEnemies = []
@@ -33,7 +34,6 @@ class Levels:
         Levels.Gates = []
         for gate in gateList:
             Levels.Gates.append(gate)
-
 
     @staticmethod
     def update():
@@ -67,3 +67,4 @@ class Levels:
             wall.draw(canvas)
         for gate in Levels.Gates:
             gate.draw(canvas)
+        canvas.draw_text(str(Levels.printText), (10, 15), 20, "White")
