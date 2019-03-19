@@ -26,8 +26,8 @@ class MeleeInteractionSet:
         for e1 in self.meleeSet:
             for e2 in self.meleeSet:
                 if e1.collides(e2):
-                    e1.currentlyNotTarget = True
-                    e2.currentlyNotTarget = True
+                    e1.set_target(False)
+                    e2.set_target(False)
                     if UPair(e1, e2) not in self.inCollision:
                         self.inCollision.add(UPair(e1, e2))
                         n = (e1.pos - e2.pos).normalize()
@@ -37,6 +37,6 @@ class MeleeInteractionSet:
                     else:
                         self.inCollision.discard(UPair(e1, e2))
                 else:
-                    e1.currentlyNotTarget = False
-                    e2.currentlyNotTarget = False
+                    e1.set_target(True)
+                    e2.set_target(True)
 

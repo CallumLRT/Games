@@ -17,6 +17,8 @@ class Enemy:
         self.pos = Vector(pos[0], pos[1])
         self.speed = speed
 
+
+
     def draw(self, canvas):
         canvas.draw_image(self.IMG, self.IMG_CENTRE, self.IMG_DIMS, self.pos.get_p(), self.DIMS)
 
