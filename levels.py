@@ -33,8 +33,7 @@ class Levels:
         Levels.Gates = []
         for gate in gateList:
             Levels.Gates.append(gate)
-        meleeEnemiesList = []
-        rangedEnemiesList = []
+
 
     @staticmethod
     def update():
