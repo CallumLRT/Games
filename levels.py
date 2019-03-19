@@ -6,6 +6,7 @@ except ImportError:
 from wheel import Wheel  # replace with player class
 from keyboard import Keyboard
 from playerInteraction import PlayerInteraction
+from walls import Wall
 
 
 class Levels:
@@ -17,6 +18,7 @@ class Levels:
     MeleeEnemies = []
     RangedEnemies = []
     Projectiles = []
+    Walls = {Wall(0), Wall(1), Wall(2), Wall(3)}
     Gates = []
     GateInteractions = []
 
@@ -54,3 +56,5 @@ class Levels:
             ranged.draw(canvas)
         for projectiles in Levels.Projectiles:
             projectiles.draw(canvas)
+        for wall in Levels.Walls:
+            wall.draw(canvas)

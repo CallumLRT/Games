@@ -14,22 +14,14 @@ from level1 import Level1
 # add them in the global files so they can be used across multiple files
 CANVAS_DIMS = globals.CANVAS_DIMS
 
-walls = []
-walls.append(Wall(0))
-walls.append(Wall(1))
-walls.append(Wall(2))
-walls.append(Wall(3))
-
 wall_interactions = []
-for wall in walls:
+for wall in Levels.Walls:
     wall_interactions.append(Interaction(Levels.player, wall))
 
 level = Level1()
 
 
 def draw(canvas):
-    for wall in walls:
-        wall.draw(canvas)
     for interaction in wall_interactions:
         interaction.update()
     Levels.update()
