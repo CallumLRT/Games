@@ -18,6 +18,7 @@ class Levels:
     RangedEnemies = []
     Projectiles = []
     Gates = []
+    GateInteractions = []
 
     # moved to update()
     # @staticmethod
