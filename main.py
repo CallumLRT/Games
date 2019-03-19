@@ -15,10 +15,10 @@ from level1 import Level1
 CANVAS_DIMS = globals.CANVAS_DIMS
 
 walls = []
-walls.append(Wall(Vector(0, 0), Vector(CANVAS_DIMS[0], 0), Vector(0, 1)))
-walls.append(Wall(Vector(CANVAS_DIMS[0], 0), Vector(CANVAS_DIMS[0], CANVAS_DIMS[1]), Vector(-1, 0)))
-walls.append(Wall(Vector(0, CANVAS_DIMS[1]), Vector(CANVAS_DIMS[0], CANVAS_DIMS[1]), Vector(0, -1)))
-walls.append(Wall(Vector(0, 0), Vector(0, CANVAS_DIMS[1]), Vector(1, 0)))
+walls.append(Wall(0))
+walls.append(Wall(1))
+walls.append(Wall(2))
+walls.append(Wall(3))
 
 wall_interactions = []
 for wall in walls:
