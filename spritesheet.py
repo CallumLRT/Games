@@ -22,7 +22,7 @@ class SpriteSheet:
         self.frameHeight = frameHeight
         self.frameCentreX = self.frameWidth/2
         self.frameCentreY = self.frameHeight/2
-        self.frameIndex = (i,j)
+        self.frameIndex = (0, 0)
         x = self.frameWidth*self.frameIndex[0] + self.frameCentreX
         y = self.frameHeight*self.frameIndex[1] + self.frameCentreY
 
