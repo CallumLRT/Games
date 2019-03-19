@@ -14,7 +14,7 @@ import globals
 CANVAS_DIMS = globals.CANVAS_DIMS
 
 class SpriteSheet:
-    def init(self, url, frameWidth, frameHeight, dimX, dimY, x, y, maxIndex):
+    def init(self, url, frameWidth, frameHeight, dimX, dimY, maxIndex):
         # loading the image
         self.url = url
         self.img = simplegui.load_image(url)
@@ -24,11 +24,10 @@ class SpriteSheet:
         self.frameHeight = self.img.get_height() / self.maxIndex[1]
         self.frameCentreX = self.frameWidth/2
         self.frameCentreY = self.frameHeight/2
+        #positions of the frames in the sprite sheet
         x = self.frameWidth*self.frameIndex[0] + self.frameCentreX
         y = self.frameHeight*self.frameIndex[1] + self.frameCentreY
-        self.pos = (x, y)
 
-        # inside the drawing handler
         self.dimX = dimX
         self.dimY = dimY
 
