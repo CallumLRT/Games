@@ -40,5 +40,5 @@ class SpriteSheet:
         )
 
     def nextFrame(self):
-        self.index = (self.index[0] + 1, self.index[1])
+        self.frameIndex[0]=self.frameIndex[0]+1
 
