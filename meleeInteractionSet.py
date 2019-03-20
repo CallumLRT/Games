@@ -22,10 +22,11 @@ class MeleeInteractionSet:
     def update(self):
         for e in self.meleeSet:
             e.update()
-
         for e1 in self.meleeSet:
             for e2 in self.meleeSet:
                 if e1.collides(e2):
+                    e1.dazed()
+                    e2.dazed()
                     e1.set_target(False)
                     e2.set_target(False)
                     if UPair(e1, e2) not in self.inCollision:
@@ -36,7 +37,5 @@ class MeleeInteractionSet:
                         e2.vel.add(delta)
                     else:
                         self.inCollision.discard(UPair(e1, e2))
-                else:
-                    e1.set_target(True)
-                    e2.set_target(True)
+
 

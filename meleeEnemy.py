@@ -6,6 +6,10 @@ except ImportError:
 from vector import Vector
 from enemy import Enemy
 from time import *
+import globals
+
+CANVAS_WIDTH = globals.CANVAS_DIMS[0]
+CANVAS_HEIGHT = globals.CANVAS_DIMS[1]
 
 
 class MeleeEnemy(Enemy):
@@ -14,19 +18,18 @@ class MeleeEnemy(Enemy):
                          (660, 660), (50, 50), pos, 1)
         self.radius = 25
         self.border = 1
-        self.currentlyNotTarget = False
         self.dazeCount = 0
         self.currentlyTargeting = True
         self.count = 0
 
     def dazed(self):
-        self.dazeCount = 60
+        self.dazeCount = 5  # Change for different 'Dazed' times (Larger Number = Longer)
 
     def daze_cycle(self):
         if self.dazeCount > 0:
             self.dazeCount -= 1
         else:
-            self.currentlyNotTarget = False
+            self.currentlyTargeting = True
 
     def collides(self, other):
         if self == other:
@@ -41,15 +44,32 @@ class MeleeEnemy(Enemy):
 
     def set_target(self, target):
         self.currentlyTargeting = target #Boolean for whether targetting is active
-        if target:
-            print("true")
-        else:
-            self.bounce(self.pos)
-            self.count = 100
-            print("false")
 
     def count_cycle(self):
         self.count -= 1
+
+    def update(self):
+        self.pos.add(self.vel)
+        if self.outX():
+            self.pos.x %= CANVAS_WIDTH
+            if self.vel.x >= 0:
+                self.pos.x -= self.radius
+            else:
+                self.pos.x += self.radius
+        if self.outY():
+            self.pos.y %= CANVAS_HEIGHT
+            if self.vel.y >= 0:
+                self.pos.y -= 2 * self.radius
+            else:
+                self.pos.y += 2 * self.radius
+
+    def outX(self):
+        return (self.pos.x + self.radius < 0 or
+                self.pos.x - self.radius > CANVAS_WIDTH)
+
+    def outY(self):
+        return (self.pos.y + self.radius < 0 or
+                self.pos.y - self.radius > CANVAS_HEIGHT)
 
     def target(self, pos):
         if self.currentlyTargeting and self.count == 0:

@@ -37,12 +37,9 @@ def draw(canvas):
     wheel.draw(canvas)
     for enemy in melee_enemies:
         enemy.draw(canvas)
-
-        if enemy.currentlyNotTarget:
-            enemy.daze_cycle()
-        else:
+        enemy.daze_cycle()
+        if enemy.currentlyTargeting:
             enemy.target(wheel.pos)
-
         enemy.update()
     for enemy in ranged_enemies:
         enemy.update()
