@@ -15,16 +15,16 @@ class Player:
         # self.PlayerSprite = SpriteSheet('https://gyazo.com/616943d4546f31d854a59cc4b2b0b461', (3, 4))
         self.PlayerSprite_up = SpriteSheet(
             "https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/player%20sprites/player_up.png",
-            (3, 1), 10)
+            (4, 1), 10)
         self.PlayerSprite_right = SpriteSheet(
             "https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/player%20sprites/player_right.png",
-            (3, 1), 10)
+            (4, 1), 10)
         self.PlayerSprite_down = SpriteSheet(
             "https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/player%20sprites/player_down.png",
-            (3, 1), 10)
+            (4, 1), 10)
         self.PlayerSprite_left = SpriteSheet(
             "https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/player%20sprites/player_left.png",
-            (3, 1), 10)
+            (4, 1), 10)
         self.PlayerSprite_current = self.PlayerSprite_up
         self.vel = Vector(3, 0)
         self.pos = Vector(CANVAS_DIMS[0] / 2, 2 * CANVAS_DIMS[1] / 3.)
