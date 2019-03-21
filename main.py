@@ -12,13 +12,14 @@ from meleeEnemy import MeleeEnemy
 from rangedEnemy import RangedEnemy
 from interactions import Interaction
 from walls import Wall
+from player import Player
 
 # constants
 # add them in the global files so they can be used across multiple files
 CANVAS_DIMS = globals.CANVAS_DIMS
 
 kbd = Keyboard()
-wheel = Wheel()
+wheel = Player()
 playerInter = PlayerInteraction(wheel, kbd)
 
 walls = []
