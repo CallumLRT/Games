@@ -14,13 +14,13 @@ class Levels:
     # static variable:
     player = Wheel()
     kbd = Keyboard()
-    playerInteraction = PlayerInteraction(player, kbd)
+    Walls = [Wall(0), Wall(1), Wall(2), Wall(3)]
+    playerInteraction = PlayerInteraction(player, kbd, Walls)
     levels = []
     MeleeEnemies = []
     MeleeInteractions = []
     RangedEnemies = []
     Projectiles = []
-    Walls = {Wall(0), Wall(1), Wall(2), Wall(3)}
     Gates = []
     GateInteractions = []
     printText = 0

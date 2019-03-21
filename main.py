@@ -32,8 +32,8 @@ level5 = Level5()
 
 
 def draw(canvas):
-    for interaction in wall_interactions:
-        interaction.update()
+    # for interaction in wall_interactions:
+    #     interaction.update()dwa
     Levels.update()
     Levels.draw(canvas)
 
