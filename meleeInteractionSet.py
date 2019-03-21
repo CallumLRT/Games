@@ -5,7 +5,7 @@ class UPair:
 
     def __hash__(self):
         return hash((min(hash(self.fst), hash(self.snd)),
-                max(hash(self.fst), hash(self.snd))))
+                     max(hash(self.fst), hash(self.snd))))
 
     def __eq__(self, other):
         return ((self.fst == other.fst and self.snd == other.snd) or
@@ -13,6 +13,7 @@ class UPair:
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
 
 class MeleeInteractionSet:
     def __init__(self, melee_enemies):
@@ -37,5 +38,3 @@ class MeleeInteractionSet:
                         e2.vel.add(delta)
                     else:
                         self.inCollision.discard(UPair(e1, e2))
-
-

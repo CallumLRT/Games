@@ -5,7 +5,6 @@ except ImportError:
 
 from vector import Vector
 from enemy import Enemy
-from time import *
 import globals
 
 CANVAS_WIDTH = globals.CANVAS_DIMS[0]
@@ -43,7 +42,7 @@ class MeleeEnemy(Enemy):
         self.vel.reflect(normal)
 
     def set_target(self, target):
-        self.currentlyTargeting = target #Boolean for whether targetting is active
+        self.currentlyTargeting = target  # Boolean for whether targetting is active
 
     def count_cycle(self):
         self.count -= 1

@@ -11,4 +11,3 @@ except ImportError:
             exit()
 
 from vector import Vector
-

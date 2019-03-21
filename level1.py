@@ -5,7 +5,6 @@ except ImportError:
 
 from levels import Levels
 from meleeEnemy import MeleeEnemy
-from rangedEnemy import RangedEnemy
 from gates import Gate
 import globals
 
