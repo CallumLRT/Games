@@ -21,11 +21,11 @@ class SpriteSheet:
                           (self.frameWidth * self.index[0] + self.frameCentreX,
                            self.frameHeight * self.index[1] + self.frameCentreY),
                           (self.frameWidth, self.frameHeight),
-                          (pos[0] + self.frameCentreX, pos[1] + self.frameCentreY),
+                          (pos[0], pos[1]),
                           (self.frameWidth, self.frameHeight)
                           )
 
-    def nextFrame(self):
+    def update(self):
         self.index = (self.index[0] + 1, self.index[1])
         if self.index[0] >= self.maxIndex[0]:
             self.index = (0, self.index[1] + 1)
