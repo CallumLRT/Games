@@ -4,6 +4,7 @@ except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 import globals
+
 from vector import Vector
 from interactions import Interaction
 from walls import Wall
@@ -14,6 +15,7 @@ from level3 import Level3
 from level4 import Level4
 from level5 import Level5
 
+
 # constants
 # add them in the global files so they can be used across multiple files
 CANVAS_DIMS = globals.CANVAS_DIMS
@@ -22,12 +24,15 @@ wall_interactions = []
 for wall in Levels.Walls:
     wall_interactions.append(Interaction(Levels.player, wall))
 
+
 level1 = Level1()
 level1.LoadLevel()
 level2 = Level2()
 level3 = Level3()
 level4 = Level4()
 level5 = Level5()
+
+
 
 
 def draw(canvas):
