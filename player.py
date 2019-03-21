@@ -21,12 +21,6 @@ class Player:
         self.PlayerSprite.draw(canvas)
 
     def update(self):
-        self.frameIndex = (self.frameIndex[0] + 1, self.frameIndex[1])
-        if self.frameIndex[0] >= self.maxIndex[0]:
-            # go back to start of row for a loop effect
-            self.frameIndex = (0, self.frameIndex[1])
-            #need to create a loop so that it does each row for each of the wasd keys
-
         while(#wkeypress)
             self.frameIndex = (0,0)
             self.PlayerSprite.nextFrameRows()
