@@ -4,6 +4,7 @@ except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 from wheel import Wheel  # replace with player class
+from interactions import Interaction
 from keyboard import Keyboard
 from playerInteraction import PlayerInteraction
 from walls import Wall
@@ -21,6 +22,9 @@ class Levels:
     MeleeInteractions = []
     RangedEnemies = []
     Projectiles = []
+    wall_interactions = []
+    for wall in Walls:
+        wall_interactions.append(Interaction(player, wall))
     Gates = []
     GateInteractions = []
     printText = 0
@@ -43,6 +47,8 @@ class Levels:
     def update():
         Levels.player.update()
         Levels.playerInteraction.update()
+        for interaction in Levels.wall_interactions:
+            interaction.update()
         for melee in Levels.MeleeEnemies:
             melee.daze_cycle()
             if melee.currentlyTargeting:
