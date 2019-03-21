@@ -23,7 +23,7 @@ class MeleeEnemy(Enemy):
         self.count = 0
 
     def dazed(self):
-        self.dazeCount = 5  # Change for different 'Dazed' times (Larger Number = Longer)
+        self.dazeCount = 8  # Change for different 'Dazed' times (Larger Number = Longer)
 
     def daze_cycle(self):
         if self.dazeCount > 0:
