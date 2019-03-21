@@ -7,6 +7,7 @@ from wheel import Wheel  # replace with player class
 from keyboard import Keyboard
 from playerInteraction import PlayerInteraction
 from walls import Wall
+from meleeInteractionSet import *
 
 
 class Levels:
@@ -16,6 +17,7 @@ class Levels:
     playerInteraction = PlayerInteraction(player, kbd)
     levels = []
     MeleeEnemies = []
+    MeleeInteractions = []
     RangedEnemies = []
     Projectiles = []
     Walls = {Wall(0), Wall(1), Wall(2), Wall(3)}
@@ -27,6 +29,7 @@ class Levels:
         Levels.MeleeEnemies = []
         Levels.RangedEnemies = []
         Levels.Projectiles = []
+        Levels.MeleeInteractions = []
         for enemy in meleeEnemiesList:
             Levels.MeleeEnemies.append(enemy)
         for enemy in rangedEnemiesList:
@@ -34,14 +37,18 @@ class Levels:
         Levels.Gates = []
         for gate in gateList:
             Levels.Gates.append(gate)
+        Levels.MeleeInteractions = MeleeInteractionSet(meleeEnemiesList)
 
     @staticmethod
     def update():
         Levels.player.update()
         Levels.playerInteraction.update()
         for melee in Levels.MeleeEnemies:
-            melee.target(Levels.player.pos)
+            melee.daze_cycle()
+            if melee.currentlyTargeting:
+                melee.target(Levels.player.pos)
             melee.update()
+        Levels.MeleeInteractions.update()
         for ranged in Levels.RangedEnemies:
             ranged.target(Levels.player.pos)
             ranged.update()

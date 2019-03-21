@@ -21,7 +21,7 @@ class Wheel:
         self.IMG_Size = (128, 128)
         self.pos = Vector(CANVAS_DIMS[0] / 2, 2 * CANVAS_DIMS[1] / 3.)
         self.imgRot = 0
-        self.radius = 10
+        self.radius = 20
 
 
 
