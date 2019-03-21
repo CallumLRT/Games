@@ -3,7 +3,6 @@ try:
 except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
-
 from vector import Vector
 import globals
 
@@ -34,8 +33,12 @@ class Wheel:
         else:
             self.pos.x = -self.imgRadius
 
+    def bounce(self, normal):
+        self.vel.reflect(normal)
+
     def update(self):
         self.pos.add(self.vel)
+        self.wrap()
         self.vel.multiply(0.9)
         if self.vel.x < -0.005:
             self.STEP = 0.5
@@ -43,3 +46,7 @@ class Wheel:
             self.STEP = -0.5
         else:
             self.STEP = 0
+
+    def wrap(self):
+        self.pos.x %= CANVAS_DIMS[0]
+        self.pos.y %= CANVAS_DIMS[1]

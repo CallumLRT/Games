@@ -3,7 +3,7 @@ try:
 except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
-
+    
 # Don't touch this anymore
 class SpriteSheet:
     def __init__(self, url, maxIndex):

@@ -3,10 +3,14 @@ try:
 except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
+from vector import Vector
+
 
 # adapted from the code provided in lectures
 
-# TODO: prevent player from jittering when touching the wall
+# works together wil PlayerInteractions class
+# PlayerInteractions prevents moving into wall
+# this class prevents excess velocity of player pushing them through the wall
 class Interaction:
     def __init__(self, particle, line):
         self.particle = particle
@@ -15,13 +19,12 @@ class Interaction:
         self.line.direction_of_player.multiply(5)
 
     def update(self):
-        if (self.line.distanceTo(self.particle.pos) < self.line.thickness + self.particle.radius and
+        if (self.line.distanceTo(self.particle.pos) < self.line.thickness + self.particle.radius - 1 and
                 self.line.covers(self.particle.pos)):
             if not self.inCollision:
-                # self.particle.vel.reflect(self.line.normal) # this bounces the particle from the wall
-                self.particle.vel = self.particle.vel.subtract(self.particle.vel)  # this stops the particle
                 self.inCollision = True
             else:
                 self.particle.pos.add(self.line.direction_of_player)
+                self.particle.vel = Vector(0, 0)
         else:
             self.inCollision = False
