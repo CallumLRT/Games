@@ -4,59 +4,47 @@ except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 import globals
-from interaction import Interaction
-from keyboard import Keyboard
-from wheel import Wheel
-from meleeEnemy import MeleeEnemy
-from rangedEnemy import RangedEnemy
-from meleeInteractionSet import *
+
+from vector import Vector
+from interactions import Interaction
+from walls import Wall
+from levels import Levels
+from level1 import Level1
+from level2 import Level2
+from level3 import Level3
+from level4 import Level4
+from level5 import Level5
+
 
 # constants
 # add them in the global files so they can be used across multiple files
 CANVAS_DIMS = globals.CANVAS_DIMS
 
-kbd = Keyboard()
-wheel = Wheel()
-inter = Interaction(wheel, kbd)
+wall_interactions = []
+for wall in Levels.Walls:
+    wall_interactions.append(Interaction(Levels.player, wall))
 
-melee_enemies = []
-melee_enemies.append(MeleeEnemy((500, 100)))
-melee_enemies.append(MeleeEnemy((100, 100)))
-meleeInterSet = MeleeInteractionSet(melee_enemies)
 
-ranged_enemies = []
-ranged_enemies.append(RangedEnemy((100, 100)))
-fireballs = []
+level1 = Level1()
+level1.LoadLevel()
+level2 = Level2()
+level3 = Level3()
+level4 = Level4()
+level5 = Level5()
+
 
 
 
 def draw(canvas):
-    inter.update()
-    wheel.update()
-    meleeInterSet.update()
-    wheel.draw(canvas)
-    for enemy in melee_enemies:
-        enemy.draw(canvas)
-        enemy.daze_cycle()
-        if enemy.currentlyTargeting:
-            enemy.target(wheel.pos)
-        enemy.update()
-    for enemy in ranged_enemies:
-        enemy.update()
-        enemy.draw(canvas)
-        enemy.target(wheel.pos)
-        if enemy.cooldown <= 0:
-            fireballs.append(enemy.shoot(wheel.pos))
-        for fireball in fireballs:
-            fireball.update()
-            fireball.draw(canvas)
-            if fireball.frame_life <= 0:
-                fireballs.remove(fireball)
+    for interaction in wall_interactions:
+        interaction.update()
+    Levels.update()
+    Levels.draw(canvas)
 
 
 frame = simplegui.create_frame('Game', CANVAS_DIMS[0], CANVAS_DIMS[1])
 frame.set_canvas_background('black')
 frame.set_draw_handler(draw)
-frame.set_keydown_handler(kbd.keyDown)
-frame.set_keyup_handler(kbd.keyUp)
+frame.set_keydown_handler(Levels.kbd.keyDown)
+frame.set_keyup_handler(Levels.kbd.keyUp)
 frame.start()
