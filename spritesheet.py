@@ -6,6 +6,9 @@ except ImportError:
 
 # Don't touch this anymore
 class SpriteSheet:
+    # url: url for image
+    # maxIndex: how many (columns,rows) there are in the spritesheet
+    # frameDelay: delay in between frames to slow down the animation
     def __init__(self, url, maxIndex, frameDelay=1):
         self.url = url
         self.img = simplegui.load_image(url)
@@ -18,6 +21,7 @@ class SpriteSheet:
         self.frameDelay = frameDelay
         self.frame = 0
 
+    # pos: the (x, y) coordinates to draw at
     def draw(self, canvas, pos):
         canvas.draw_image(self.img,
                           (self.frameWidth * self.index[0] + self.frameCentreX,
