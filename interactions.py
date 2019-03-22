@@ -12,6 +12,8 @@ from vector import Vector
 # PlayerInteractions prevents moving into wall
 # this class prevents excess velocity of player pushing them through the wall
 class Interaction:
+    # particle: whatever particle that would bounce (enemy?)
+    # line: whatever line that would cause said bounce (wall?)
     def __init__(self, particle, line):
         self.particle = particle
         self.line = line

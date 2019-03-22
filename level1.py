@@ -9,6 +9,7 @@ from gates import Gate
 import globals
 
 
+# stores values for level
 class Level1(Levels):
     def __init__(self):
         Levels.levels.append(self)

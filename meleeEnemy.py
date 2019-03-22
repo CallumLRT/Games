@@ -14,7 +14,7 @@ CANVAS_HEIGHT = globals.CANVAS_DIMS[1]
 class MeleeEnemy(Enemy):
     def __init__(self, pos):
         super().__init__("https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/fancycircle.png",
-                         (660, 660), (50, 50), pos, 1)
+                         (50, 50), pos, 1)
         self.radius = 25
         self.border = 1
         self.dazeCount = 0

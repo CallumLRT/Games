@@ -7,10 +7,10 @@ import math
 
 
 class Projectile:
-    def __init__(self, img_url, img_dims, dims, pos, speed, target, frame_life):
+    def __init__(self, img_url, dims, pos, speed, target, frame_life):
         self.IMG = simplegui.load_image(img_url)
-        self.IMG_DIMS = img_dims
-        self.IMG_CENTRE = (img_dims[0] / 2, img_dims[1] / 2)
+        self.IMG_DIMS = (self.IMG.get_width(), self.IMG.get_height())
+        self.IMG_CENTRE = (self.IMG_DIMS[0] / 2, self.IMG_DIMS[1] / 2)
         self.DIMS = dims
         self.vel = target.copy().subtract(pos).normalize().multiply(speed)
         self.pos = pos.copy()
