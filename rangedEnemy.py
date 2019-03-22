@@ -13,7 +13,7 @@ from random import randint
 class RangedEnemy(Enemy):
     def __init__(self, pos):
         super().__init__("https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/bluecircle.png",
-                         (500, 500), (50, 50), pos, 2)
+                         (50, 50), pos, 2)
         self.cooldown = randint(100, 140)
         self.cooldown_max = self.cooldown
 

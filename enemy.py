@@ -8,10 +8,14 @@ from vector import Vector
 
 # Do not use directly, only inherit from
 class Enemy:
-    def __init__(self, img_url, img_dims, dims, pos, speed):
+    # img_url: url to image to display as enemy
+    # dims: dimensions to draw on the canvas
+    # pos: coordinates (as a tuple) to spawn the enemy at
+    # speed: how fast the enemy moves
+    def __init__(self, img_url, dims, pos, speed):
         self.IMG = simplegui.load_image(img_url)
-        self.IMG_DIMS = img_dims
-        self.IMG_CENTRE = (img_dims[0] / 2, img_dims[1] / 2)
+        self.IMG_DIMS = (self.IMG.get_width(), self.IMG.get_height())
+        self.IMG_CENTRE = (self.IMG_DIMS[0] / 2, self.IMG_DIMS[1] / 2)
         self.DIMS = dims
         self.vel = Vector(0, 0)
         self.pos = Vector(pos[0], pos[1])
