@@ -9,12 +9,14 @@ from keyboard import Keyboard
 from playerInteraction import PlayerInteraction
 from walls import Wall
 from meleeInteractionSet import *
+from room import Room
 
 
 class Levels:
     # static variable:
     player = Player()
     kbd = Keyboard()
+    room = Room()
     Walls = [Wall(0), Wall(1), Wall(2), Wall(3)]
     playerInteraction = PlayerInteraction(player, kbd, Walls)
     levels = []
@@ -69,6 +71,7 @@ class Levels:
 
     @staticmethod
     def draw(canvas):
+        Levels.room.draw(canvas)
         Levels.player.draw(canvas)
         for melee in Levels.MeleeEnemies:
             melee.draw(canvas)

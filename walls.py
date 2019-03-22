@@ -30,7 +30,7 @@ class Wall:
         self.normal = Vector(-self.unit.y, self.unit.x)
 
     def draw(self, canvas):
-        canvas.draw_line(self.pA.get_p(), self.pB.get_p(), self.thickness, "Red")
+        canvas.draw_line(self.pA.get_p(), self.pB.get_p(), self.thickness, "Brown")
 
     def distanceTo(self, pos):
         posToA = pos - self.pA
