@@ -10,8 +10,7 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 
 class Room:
     def __init__(self):
-        rr = 2
-            #random.randint(1, 4)
+        rr = random.randint(1, 4)
         if (rr == 1):
             self.IMG = simplegui.load_image(
                 'https://raw.githubusercontent.com/CalhamZeKoala/Games/master/images/Room.png?token=AexQrdRVNhD_QU5cQNkbuTH6MyOWBMkAks5clNUFwA%3D%3D')
