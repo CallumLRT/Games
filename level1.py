@@ -4,6 +4,7 @@ except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 from levels import Levels
+from rock import Rock
 from meleeEnemy import MeleeEnemy
 from gates import Gate
 import globals
@@ -15,6 +16,7 @@ class Level1(Levels):
         Levels.levels.append(self)
         self.MeleeEnemies = {MeleeEnemy((globals.CANVAS_DIMS[0] / 2, globals.CANVAS_DIMS[1] / 4))}
         self.RangedEnemies = {}
+        self.Rock = {Rock((globals.CANVAS_DIMS[0] / 2, globals.CANVAS_DIMS[1] / 4))}
         self.Gates = {Gate(0, 0, 1)}
 
     def LoadLevel(self):
