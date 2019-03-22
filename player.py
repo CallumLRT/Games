@@ -36,4 +36,3 @@ class Player:
     def update(self):
         self.pos.add(self.vel)
         self.vel.multiply(0.7)
-        self.PlayerSprite_current.update()

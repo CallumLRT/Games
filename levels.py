@@ -3,7 +3,7 @@ try:
 except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
-from wheel import Wheel  # replace with player class
+from player import Player
 from interactions import Interaction
 from keyboard import Keyboard
 from playerInteraction import PlayerInteraction
@@ -13,7 +13,7 @@ from meleeInteractionSet import *
 
 class Levels:
     # static variable:
-    player = Wheel()
+    player = Player()
     kbd = Keyboard()
     Walls = [Wall(0), Wall(1), Wall(2), Wall(3)]
     playerInteraction = PlayerInteraction(player, kbd, Walls)
