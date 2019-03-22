@@ -22,21 +22,21 @@ class PlayerInteraction:
             else:
                 self.player.vel = Vector(0, 0)
 
-        if self.keyboard.right:
-            self.player.PlayerSprite_current = self.player.PlayerSprite_right
-            self.player.PlayerSprite_current.update()
-            if not (self.walls[1].distanceTo(self.player.pos) < self.walls[1].thickness + self.player.radius + 1 and
-                    self.walls[1].covers(self.player.pos)):
-                self.player.vel.add(Vector(1, 0))
-            else:
-                self.player.vel = Vector(0, 0)
-
         if self.keyboard.down:
             self.player.PlayerSprite_current = self.player.PlayerSprite_down
             self.player.PlayerSprite_current.update()
             if not (self.walls[2].distanceTo(self.player.pos) < self.walls[2].thickness + self.player.radius + 1 and
                     self.walls[2].covers(self.player.pos)):
                 self.player.vel.add(Vector(0, 1))
+            else:
+                self.player.vel = Vector(0, 0)
+
+        if self.keyboard.right:
+            self.player.PlayerSprite_current = self.player.PlayerSprite_right
+            self.player.PlayerSprite_current.update()
+            if not (self.walls[1].distanceTo(self.player.pos) < self.walls[1].thickness + self.player.radius + 1 and
+                    self.walls[1].covers(self.player.pos)):
+                self.player.vel.add(Vector(1, 0))
             else:
                 self.player.vel = Vector(0, 0)
 
