@@ -19,6 +19,7 @@ from level5 import Level5
 # add them in the global files so they can be used across multiple files
 CANVAS_DIMS = globals.CANVAS_DIMS
 
+
 level1 = Level1()
 level1.LoadLevel()
 level2 = Level2()
