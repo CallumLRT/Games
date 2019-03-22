@@ -48,3 +48,24 @@ class PlayerInteraction:
                 self.player.vel.add(Vector(-1, 0))
             else:
                 self.player.vel = Vector(0, 0)
+
+    def shoot(self):
+        if self.keyboard.arrow_up:
+            # self.player.PlayerSprite_current = self.player.PlayerSprite_up
+            # self.player.PlayerSprite_current.update()
+            return self.player.shoot(Vector(0, -1).add(self.player.pos))
+
+        if self.keyboard.arrow_down:
+            # self.player.PlayerSprite_current = self.player.PlayerSprite_down
+            # self.player.PlayerSprite_current.update()
+            return self.player.shoot(Vector(0, 1).add(self.player.pos))
+
+        if self.keyboard.arrow_right:
+            # self.player.PlayerSprite_current = self.player.PlayerSprite_right
+            # self.player.PlayerSprite_current.update()
+            return self.player.shoot(Vector(1, 0).add(self.player.pos))
+
+        if self.keyboard.arrow_left:
+            # self.player.PlayerSprite_current = self.player.PlayerSprite_left
+            # self.player.PlayerSprite_current.update()
+            return self.player.shoot(Vector(-1, 0).add(self.player.pos))

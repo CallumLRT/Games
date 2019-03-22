@@ -21,7 +21,13 @@ class Projectile:
         self.vel = target.copy().subtract(pos).normalize().multiply(speed)
         self.pos = pos.copy()
         self.speed = speed
-        self.imgRot = math.atan(self.vel.y / self.vel.x)
+        if self.vel.x == 0.0:
+            if self.vel.y == 1*speed:
+                self.imgRot = math.pi/2
+            if self.vel.y == -1*speed:
+                self.imgRot = -math.pi/2
+        else:
+            self.imgRot = math.atan(self.vel.y / self.vel.x)
         if self.vel.x < 0:
             self.imgRot = math.pi + self.imgRot
         self.frame_life = frame_life
