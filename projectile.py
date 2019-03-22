@@ -7,6 +7,12 @@ import math
 
 
 class Projectile:
+    # img_url: url to image to display as enemy
+    # dims: dimensions to draw on the canvas
+    # pos: coordinates (as a tuple) to spawn the projectile at
+    # speed: how fast the enemy moves
+    # target: point which the fireball shoots to
+    # frame_life: how many frames the projectile will last
     def __init__(self, img_url, dims, pos, speed, target, frame_life):
         self.IMG = simplegui.load_image(img_url)
         self.IMG_DIMS = (self.IMG.get_width(), self.IMG.get_height())
