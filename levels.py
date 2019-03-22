@@ -11,7 +11,6 @@ from walls import Wall
 from meleeInteractionSet import *
 from room import Room
 
-
 class Levels:
     # static variable:
     player = Player()  # the player
@@ -23,6 +22,7 @@ class Levels:
     MeleeEnemies = []  # list of melee enemies
     MeleeInteractions = None  # just initialising var to store interactions between melee enemies
     RangedEnemies = []  # list of ranged enemies
+    Rocks = []  # List of rocks
     Projectiles = []  # list of projectiles
     wall_interactions = []  # list of wall interactions to help keep player within the walls
     for wall in Walls:
@@ -35,11 +35,14 @@ class Levels:
     # meleeEnemiesList: the list of enemies from the level
     # rangedEnemiesList: the list of enemies from the level
     # gateList: list of gates from the level
-    def LoadLevel(self, meleeEnemiesList, rangedEnemiesList, gateList):
+    def LoadLevel(self, meleeEnemiesList, rangedEnemiesList, gateList, rockList):
         Levels.MeleeEnemies = []
         Levels.RangedEnemies = []
+        Levels.Rocks = []
         Levels.Projectiles = []
         Levels.MeleeInteractions = []
+        for rock in rockList:
+            Levels.Rocks.append(rock)
         for enemy in meleeEnemiesList:
             Levels.MeleeEnemies.append(enemy)
         for enemy in rangedEnemiesList:
@@ -53,6 +56,8 @@ class Levels:
     def update():
         Levels.player.update()
         Levels.playerInteraction.update()
+        for rock in Levels.Rocks:
+            rock.update()
         for interaction in Levels.wall_interactions:
             interaction.update()
         for melee in Levels.MeleeEnemies:
@@ -77,6 +82,8 @@ class Levels:
     def draw(canvas):
         Levels.room.draw(canvas)
         Levels.player.draw(canvas)
+        for rock in Levels.Rocks:
+            rock.draw(canvas)
         for melee in Levels.MeleeEnemies:
             melee.draw(canvas)
         for ranged in Levels.RangedEnemies:

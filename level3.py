@@ -20,5 +20,5 @@ class Level3(Levels):
         self.Gates = {Gate(3, 2, 1), Gate(0, 2, 3), Gate(1, 2, 4)}
 
     def LoadLevel(self):
-        super().LoadLevel(self.MeleeEnemies, self.RangedEnemies, self.Gates)
+        super().LoadLevel(self.MeleeEnemies, self.RangedEnemies, self.Gates, self.Rocks)
         Levels.printText = 3
