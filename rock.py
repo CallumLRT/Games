@@ -13,8 +13,9 @@ CANVAS_HEIGHT = globals.CANVAS_DIMS[1]
 
 class Rock(Enemy):
     def __init__(self, pos):
-        super().__init__("https://raw.githubusercontent.com/CalhamZeKoala/Games/master/images/rock.png?token=AexQrZ5LrNpxB4tlXs7pVENJNtB7v00yks5cnisHwA%3D%3D",
-                         (50, 50), pos, 1)
+        super().__init__(
+            "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/images/rock.png?token=AexQrZ5LrNpxB4tlXs7pVENJNtB7v00yks5cnisHwA%3D%3Ddawwawwaaw",
+            (50, 50), pos, 1)
         self.radius = 25
         self.border = 1
         self.dazeCount = 0
