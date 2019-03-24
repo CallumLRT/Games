@@ -6,7 +6,6 @@ class Button:
         self.image_size = image_size
         self.action = action
         self.selected = False
-        self.sound = button_sound
 
     def __str__(self):
         a = "BUTTON:" + "\n"
@@ -14,7 +13,6 @@ class Button:
         a += "Image: " + str(self.image) + "\n"
         a += "Action: " + str(self.action) + "\n"
         a += "Selected: " + str(self.selected) + "\n"
-        a += "Sound: " + str(self.sound) + "\n"
         a += "\n"
         return a
 
@@ -26,9 +24,6 @@ class Button:
                               self.image_size, self.pos, self.image_size)
 
     def activate(self):
-        if self.sound != None:
-            self.sound.rewind()
-            self.sound.play()
         self.action()
 
     def in_button(self, pos):
@@ -73,8 +68,4 @@ class Button:
         self.selected = not self.selected
         return self.selected
 
-    def get_sound(self):
-        return self.sound
 
-    def set_sound(self, s):
-        self.sound = s
