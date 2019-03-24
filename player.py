@@ -5,6 +5,7 @@ except ImportError:
 
 from vector import Vector
 from spritesheet import SpriteSheet
+from healthSpriteSheet import HealthSpriteSheet
 import globals
 
 CANVAS_DIMS = globals.CANVAS_DIMS
@@ -29,10 +30,14 @@ class Player:
         self.vel = Vector(3, 0)
         self.pos = Vector(CANVAS_DIMS[0] / 2, 2 * CANVAS_DIMS[1] / 3.)
         self.radius = max(self.PlayerSprite_current.frameHeight, self.PlayerSprite_current.frameWidth) / 2
+        self.healthSprite = HealthSpriteSheet()
+        self.health = self.healthSprite.maxIndex[1] - 1  # basing health on number of rows in health spritesheet
 
     def draw(self, canvas):
         self.PlayerSprite_current.draw(canvas, self.pos.get_p())
+        self.healthSprite.draw(canvas, ((self.healthSprite.frameWidth / 2) + 10, CANVAS_DIMS[1] - 27))
 
     def update(self):
         self.pos.add(self.vel)
         self.vel.multiply(0.7)
+        self.healthSprite.update(self.health)
