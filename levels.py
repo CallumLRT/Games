@@ -14,23 +14,27 @@ from room import Room
 
 class Levels:
     # static variable:
-    player = Player()
-    kbd = Keyboard()
-    room = Room()
-    Walls = [Wall(0), Wall(1), Wall(2), Wall(3)]
-    playerInteraction = PlayerInteraction(player, kbd, Walls)
-    levels = []
-    MeleeEnemies = []
-    MeleeInteractions = []
-    RangedEnemies = []
-    Projectiles = []
-    wall_interactions = []
+    player = Player()  # the player
+    kbd = Keyboard()  # keyboard class to check movement for player
+    room = Room()  # background for level
+    Walls = [Wall(0), Wall(1), Wall(2), Wall(3)]  # all the walls
+    playerInteraction = PlayerInteraction(player, kbd, Walls)  # interaction to keep player within the walls
+    levels = []  # list of levels. levels get appended here when they load
+    MeleeEnemies = []  # list of melee enemies
+    MeleeInteractions = None  # just initialising var to store interactions between melee enemies
+    RangedEnemies = []  # list of ranged enemies
+    Projectiles = []  # list of projectiles
+    wall_interactions = []  # list of wall interactions to help keep player within the walls
     for wall in Walls:
         wall_interactions.append(Interaction(player, wall))
-    Gates = []
-    GateInteractions = []
-    printText = 0
+    Gates = []  # list of gates to move player between levels
+    GateInteractions = []  # list of interactions for above gates
+    printText = 0  # text to represent what level the player is on
 
+    # called from within level# classes
+    # meleeEnemiesList: the list of enemies from the level
+    # rangedEnemiesList: the list of enemies from the level
+    # gateList: list of gates from the level
     def LoadLevel(self, meleeEnemiesList, rangedEnemiesList, gateList):
         Levels.MeleeEnemies = []
         Levels.RangedEnemies = []
@@ -49,6 +53,9 @@ class Levels:
     def update():
         Levels.player.update()
         Levels.playerInteraction.update()
+        if Levels.player.cooldown <= 0 and (
+                Levels.kbd.arrow_up or Levels.kbd.arrow_right or Levels.kbd.arrow_down or Levels.kbd.arrow_left):
+            Levels.Projectiles.append(Levels.playerInteraction.shoot())
         for interaction in Levels.wall_interactions:
             interaction.update()
         for melee in Levels.MeleeEnemies:

@@ -8,6 +8,7 @@ import globals
 
 
 class Wall:
+    # side: number representing which side to put wall on (0=top, 1=right, 2=bottom, 3=left)
     def __init__(self, side):
         if side == 0:  # top of the map
             self.pA = Vector(0, 0)

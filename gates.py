@@ -9,6 +9,9 @@ import globals
 
 
 class Gate():
+    # side: number representing which side to put wall on (0=top, 1=right, 2=bottom, 3=left)
+    # currentLevelIndex = the index of the level in Levels.levels (this is usually level#-1)
+    # nextLevelIndex = the index of the level in Levels.levels (this is usually level#-1)
     def __init__(self, side, currentLevelIndex, nextLevelIndex):
         self.currentLevelIndex = currentLevelIndex
         self.nextLevelIndex = nextLevelIndex
@@ -32,18 +35,22 @@ class Gate():
         self.unit = (self.pB - self.pA).normalize()
         self.normal = Vector(-self.unit.y, self.unit.x)
 
+    # pos: coordinates to measure to
     def distanceTo(self, pos):
         posToA = pos - self.pA
         proj = posToA.dot(self.normal) * self.normal
         return proj.length()
 
+    # pos: coordinates to check
     def covers(self, pos):
         return ((pos - self.pA).dot(self.unit) >= 0 and
                 (pos - self.pB).dot(-self.unit) >= 0)
 
+    # draw function
     def draw(self, canvas):
         canvas.draw_line(self.pA.get_p(), self.pB.get_p(), self.thickness, "Black")
 
+    # update function
     def update(self):
         if (self.distanceTo(Levels.player.pos) < self.thickness + Levels.player.radius and
                 self.covers(Levels.player.pos)):
