@@ -6,7 +6,9 @@ except ImportError:
 from levels import Levels
 from rock import Rock
 from meleeEnemy import MeleeEnemy
+from rangedEnemy import RangedEnemy
 from gates import Gate
+from room import Room
 import globals
 
 
@@ -18,7 +20,8 @@ class Level1(Levels):
         self.RangedEnemies = []
         self.Rocks = [Rock((globals.CANVAS_DIMS[0] / 2, globals.CANVAS_DIMS[1] / 4))]
         self.Gates = [Gate(0, 0, 1)]
+        self.Room = Room()
 
     def LoadLevel(self):
-        super().LoadLevel(self.MeleeEnemies, self.RangedEnemies, self.Gates, self.Rocks)
+        super().LoadLevel(self.MeleeEnemies, self.RangedEnemies, self.Gates, self.Rocks, self.Room)
         Levels.printText = 1
