@@ -21,6 +21,15 @@ class Rock(Enemy):
         self.dazeCount = 0
         self.currentlyTargeting = True
         self.count = 0
+        self.pos = Vector(pos[0], pos[1])
+
+    def collides(self, other):
+        if self == other:
+            return False
+        else:
+            dist = (self.pos - other.pos).length()
+            collisionDist = (self.radius + self.border) + (other.radius + other.border)
+            return dist <= collisionDist
 
     def dazed(self):
         self.dazeCount = 8  # Change for different 'Dazed' times (Larger Number = Longer)

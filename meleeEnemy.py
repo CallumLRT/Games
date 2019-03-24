@@ -31,7 +31,7 @@ class MeleeEnemy(Enemy):
         else:
             self.currentlyTargeting = True
 
-    # other: object to check if colliding wiht
+    # other: object to check if colliding with
     def collides(self, other):
         if self == other:
             return False
@@ -47,9 +47,6 @@ class MeleeEnemy(Enemy):
     # target: Boolean for whether targetting is active
     def set_target(self, target):
         self.currentlyTargeting = target
-
-    def count_cycle(self):
-        self.count -= 1
 
     def update(self):
         self.pos.add(self.vel)
@@ -75,7 +72,7 @@ class MeleeEnemy(Enemy):
                 self.pos.y - self.radius > CANVAS_HEIGHT)
 
     def target(self, pos):
-        if self.currentlyTargeting and self.count == 0:
+        if self.currentlyTargeting and self.dazeCount == 0:
             self.vel = Vector(pos.get_p()[0] - self.pos.get_p()[0], pos.get_p()[1] - self.pos.get_p()[1]).normalize()
         else:
-            self.count_cycle()
+            self.daze_cycle()
