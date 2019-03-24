@@ -29,17 +29,23 @@ level3 = Level3()
 level4 = Level4()
 level5 = Level5()
 
-m = Music()
-m.play()
 
+gameMusic = Music(
+            "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/music/DungeonMusic.ogg?token=AuVrB4f-o_7jKhvx9o8zywf9tICgCGp_ks5coU0IwA%3D%3D")
+
+menuMusic = Music(
+            "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/music/LobbyMusic.ogg?token=AuVrB01tDWNIZM_FEJe1dp2X42W41OC7ks5coVI9wA%3D%3D")
 
 def draw(canvas):
     if menu.game_start:
+        menuMusic.pause()
+        gameMusic.play()
         Levels.update()
         Levels.draw(canvas)
     else:
+        gameMusic.pause()
+        menuMusic.play()
         menu.draw(canvas)
-
 
 def mouse_handler(pos):
     if menu.BUTT_Pos[0] - menu.BUTT_CENTRE[0] <= pos[0] <= menu.BUTT_Pos[0] + menu.BUTT_CENTRE[0]:
