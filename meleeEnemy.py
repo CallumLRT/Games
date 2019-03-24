@@ -19,17 +19,12 @@ class MeleeEnemy(Enemy):
         self.radius = 25
         self.border = 1
         self.dazeCount = 0
-        self.currentlyTargeting = True
         self.count = 0
 
     def dazed(self):
         self.dazeCount = 8  # Change for different 'Dazed' times (Larger Number = Longer)
 
-    def daze_cycle(self):
-        if self.dazeCount > 0:
-            self.dazeCount -= 1
-        else:
-            self.currentlyTargeting = True
+
 
     # other: object to check if colliding with
     def collides(self, other):

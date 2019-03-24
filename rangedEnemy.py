@@ -19,17 +19,10 @@ class RangedEnemy(Enemy):
         self.cooldown_max = self.cooldown
         self.radius = 25
         self.border = 1
-        self.currentlyTargeting = True
         self.dazeCount = 0
 
     def dazed(self):
         self.dazeCount = 0  # Change for different 'Dazed' times (Larger Number = Longer)
-
-    def daze_cycle(self):
-        if self.dazeCount > 0:
-            self.dazeCount -= 1
-        else:
-            self.currentlyTargeting = True
 
     # target: coordinates to shoot at
     def shoot(self, target):

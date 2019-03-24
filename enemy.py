@@ -20,6 +20,7 @@ class Enemy:
         self.vel = Vector(0, 0)
         self.pos = Vector(pos[0], pos[1])
         self.speed = speed
+        self.currentlyTargeting = True
 
     def draw(self, canvas):
         canvas.draw_image(self.IMG, self.IMG_CENTRE, self.IMG_DIMS, self.pos.get_p(), self.DIMS)
@@ -30,3 +31,9 @@ class Enemy:
 
     def target(self, pos):
         self.vel = Vector(pos.get_p()[0] - self.pos.get_p()[0], pos.get_p()[1] - self.pos.get_p()[1]).normalize()
+
+    def daze_cycle(self):
+        if self.dazeCount > 0:
+            self.dazeCount -= 1
+        else:
+            self.currentlyTargeting = True
