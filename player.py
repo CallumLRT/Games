@@ -5,6 +5,10 @@ except ImportError:
 
 from vector import Vector
 from spritesheet import SpriteSheet
+
+from healthSpriteSheet import HealthSpriteSheet
+from health import Health
+from fireball import Fireball
 import globals
 
 CANVAS_DIMS = globals.CANVAS_DIMS
@@ -30,9 +34,22 @@ class Player:
         self.pos = Vector(CANVAS_DIMS[0] / 2, 2 * CANVAS_DIMS[1] / 3.)
         self.radius = max(self.PlayerSprite_current.frameHeight, self.PlayerSprite_current.frameWidth) / 2
 
+        self.health = Health()
+        self.healthSprite = HealthSpriteSheet(self.health)
+        self.cooldown_max = 10
+        self.cooldown = self.cooldown_max
+
     def draw(self, canvas):
         self.PlayerSprite_current.draw(canvas, self.pos.get_p())
+        self.healthSprite.draw(canvas)
 
     def update(self):
         self.pos.add(self.vel)
         self.vel.multiply(0.7)
+        self.healthSprite.update()
+        self.cooldown -= 1
+
+    def shoot(self, target):
+        self.cooldown = self.cooldown_max
+        return Fireball(self.pos, target)
+

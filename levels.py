@@ -58,6 +58,9 @@ class Levels:
         Levels.playerInteraction.update()
         for rock in Levels.Rocks:
             rock.update()
+        if Levels.player.cooldown <= 0 and (
+                Levels.kbd.arrow_up or Levels.kbd.arrow_right or Levels.kbd.arrow_down or Levels.kbd.arrow_left):
+            Levels.Projectiles.append(Levels.playerInteraction.shoot())
         for interaction in Levels.wall_interactions:
             interaction.update()
         for melee in Levels.MeleeEnemies:

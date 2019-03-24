@@ -12,6 +12,7 @@ CANVAS_HEIGHT = globals.CANVAS_DIMS[1]
 
 
 class MeleeEnemy(Enemy):
+    # pos: coordinates to spawn the enemy at
     def __init__(self, pos):
         super().__init__("https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/fancycircle.png",
                          (50, 50), pos, 1)
@@ -30,6 +31,7 @@ class MeleeEnemy(Enemy):
         else:
             self.currentlyTargeting = True
 
+    # other: object to check if colliding wiht
     def collides(self, other):
         if self == other:
             return False
@@ -38,11 +40,13 @@ class MeleeEnemy(Enemy):
             collisionDist = (self.radius + self.border) + (other.radius + other.border)
             return dist <= collisionDist
 
+    # normal: vector to use as the normal
     def bounce(self, normal):
         self.vel.reflect(normal)
 
+    # target: Boolean for whether targetting is active
     def set_target(self, target):
-        self.currentlyTargeting = target  # Boolean for whether targetting is active
+        self.currentlyTargeting = target
 
     def count_cycle(self):
         self.count -= 1
