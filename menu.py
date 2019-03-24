@@ -11,6 +11,8 @@ CANVAS_DIMS = globals.CANVAS_DIMS
 
 class Menu:
     def __init__(self):
+        self.game_start = False
+
         self.IMG = simplegui.load_image(
             'https://raw.githubusercontent.com/CalhamZeKoala/Games/master/images/Simple_grey.png?token=AexQrWRp93DDGdtspxKgQRIo_NppOK6Gks5coMbQwA%3D%3D')
         self.IMG_CENTRE = (self.IMG.get_width() / 2, self.IMG.get_height() / 2)
