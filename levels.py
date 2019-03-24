@@ -20,7 +20,7 @@ class Levels:
     playerInteraction = PlayerInteraction(player, kbd, Walls)  # interaction to keep player within the walls
     levels = []  # list of levels. levels get appended here when they load
     MeleeEnemies = []  # list of melee enemies
-    MeleeInteractions = None  # just initialising var to store interactions between melee enemies
+    MeleeInteractions = []  # just initialising var to store interactions between melee enemies
     RangedEnemies = []  # list of ranged enemies
     Rocks = []  # List of rocks
     Projectiles = []  # list of projectiles
@@ -50,7 +50,7 @@ class Levels:
         Levels.Gates = []
         for gate in gateList:
             Levels.Gates.append(gate)
-        Levels.MeleeInteractions = MeleeInteractionSet(meleeEnemiesList)
+        Levels.MeleeInteractions.append(MeleeInteractionSet(meleeEnemiesList))
 
     @staticmethod
     def update():
@@ -65,7 +65,8 @@ class Levels:
             if melee.currentlyTargeting:
                 melee.target(Levels.player.pos)
             melee.update()
-        Levels.MeleeInteractions.update()
+        for interaction in Levels.MeleeInteractions:
+            interaction.update()
         for ranged in Levels.RangedEnemies:
             ranged.target(Levels.player.pos)
             ranged.update()
