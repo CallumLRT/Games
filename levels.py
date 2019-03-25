@@ -49,15 +49,15 @@ class Levels:
         Levels.ObjInteractions = []
         Levels.allObj = []
         Levels.Enemies = []
+        Levels.Rocks = rockList
         for rock in rockList:
-            Levels.Rocks.append(rock)
             Levels.allObj.append(rock)
+        Levels.MeleeEnemies = meleeEnemiesList
         for enemy in meleeEnemiesList:
-            Levels.MeleeEnemies.append(enemy)
             Levels.allObj.append(enemy)
             Levels.Enemies.append(enemy)
+        Levels.RangedEnemies = rangedEnemiesList
         for enemy in rangedEnemiesList:
-            Levels.RangedEnemies.append(enemy)
             Levels.allObj.append(enemy)
             Levels.Enemies.append(enemy)
         Levels.Gates = []
