@@ -36,7 +36,7 @@ class Player:
 
         self.health = Health()
         self.healthSprite = HealthSpriteSheet(self.health)
-        self.cooldown_max = 10
+        self.cooldown_max = 30
         self.cooldown = self.cooldown_max
         self.border = 1
 

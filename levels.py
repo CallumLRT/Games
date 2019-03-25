@@ -124,3 +124,24 @@ class Levels:
             gate.draw(canvas)
         canvas.draw_text("Room: " + str(Levels.roomText), (10, 9), 15, "White")
         canvas.draw_text("Score: " + str(Levels.scoreText), (930, 9), 15, "White")
+
+    @staticmethod
+    def restart():
+        Levels.player = Player()  # the player
+        Levels.kbd = Keyboard()  # keyboard class to check movement for player
+        Levels.room = None # background for level
+        Levels.Walls = [Wall(0), Wall(1), Wall(2), Wall(3)]  # all the walls
+        Levels.playerInteraction = PlayerInteraction(Levels.player, Levels.kbd, Levels.Walls)  # interaction to keep player within the walls
+        Levels.levels = []  # list of levels. levels get appended here when they load
+        Levels.MeleeEnemies = []  # list of melee enemies
+        Levels.ObjInteractions = []  # just initialising var to store interactions between melee enemies
+        Levels.RangedEnemies = []  # list of ranged enemies
+        Levels.Rocks = []  # List of rocks
+        Levels.Projectiles = []  # list of projectiles
+        Levels.wall_interactions = []  # list of wall interactions to help keep player within the walls
+        for wall in Levels.Walls:
+            Levels. wall_interactions.append(Interaction(Levels.player, wall))
+        Levels.Gates = []  # list of gates to move player between levels
+        Levels.GateInteractions = []  # list of interactions for above gates
+        Levels.roomText = 0  # text to represent what room the player is in
+        Levels.scoreText = 0

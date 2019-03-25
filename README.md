@@ -1,5 +1,5 @@
 # Dungeon Walker 
-A CS1830 Project By Callum Terry, Mateusz Matczak Vel Blaszczak, Thomas Hesketh, Hoi Yeung, ~and Jacob Crick~ // Group 27
+A CS1830 Project By Callum Terry, Mateusz Matczak Vel Blaszczak, Thomas Hesketh, ~Hoi Yeung, and Jacob Crick~ // Group 27
 
 ## Prerequisites (For PyCharm)
 1. SimpleGUICS2Pygame
