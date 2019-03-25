@@ -51,12 +51,11 @@ class Menu:
         if self.game_end:
             canvas.draw_image(self.END, self.END_CENTRE, self.END_DIMS, self.END_Pos,
                               self.END_Size)
-        #canvas.draw_image(image, center_source, width_height_source, center_dest, width_height_dest)
 
     def update(self):
         if not self.menu_music_playing and not self.game_start:
             self.menu_music.play()
-            self.menu_music_playing = False
+            self.menu_music_playing = True
         if self.game_start and self.menu_music_playing:
             self.menu_music.pause()
             self.menu_music.rewind()
