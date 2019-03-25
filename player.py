@@ -34,7 +34,7 @@ class Player:
         self.pos = Vector(CANVAS_DIMS[0] / 2, 2 * CANVAS_DIMS[1] / 3.)
         self.radius = max(self.PlayerSprite_current.frameHeight, self.PlayerSprite_current.frameWidth) / 2
 
-        self.health = Health(50)
+        self.health = Health()
         self.healthSprite = HealthSpriteSheet(self.health)
         self.cooldown_max = 30
         self.cooldown = self.cooldown_max
