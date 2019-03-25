@@ -42,6 +42,8 @@ class Menu:
         self.END_Size = (globals.CANVAS_DIMS[0]*0.7, globals.CANVAS_DIMS[0]*0.7)
         self.END_Pos = (globals.CANVAS_DIMS[0] / 2, globals.CANVAS_DIMS[1] / 2)  # where to draw image
 
+        self.END_BUTT_Pos = (CANVAS_DIMS[0] / 2, (CANVAS_DIMS[1] / 6) * 5)
+
     def draw(self, canvas):
         if not self.game_start:
             canvas.draw_image(self.IMG, self.IMG_CENTRE, self.IMG_DIMS, self.IMG_Pos,
@@ -51,6 +53,9 @@ class Menu:
         if self.game_end:
             canvas.draw_image(self.END, self.END_CENTRE, self.END_DIMS, self.END_Pos,
                               self.END_Size)
+            canvas.draw_image(self.BUTT, self.BUTT_CENTRE, self.BUTT_DIMS, self.END_BUTT_Pos,
+                              self.BUTT_Size)
+
 
     def update(self):
         if not self.menu_music_playing and not self.game_start:
