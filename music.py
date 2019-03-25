@@ -17,3 +17,5 @@ class Music:
     def pause(self):
         self.music.pause()
 
+    def rewind(self):
+        self.music.rewind()
