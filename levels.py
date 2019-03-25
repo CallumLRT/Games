@@ -10,6 +10,8 @@ from playerInteraction import PlayerInteraction
 from walls import Wall
 from interactionSet import *
 from projectileCollision import ProjectileCollision
+from globals import *
+from scores import *
 
 class Levels:
     # static variable:
@@ -32,8 +34,8 @@ class Levels:
     Gates = []  # list of gates to move player between levels
     GateInteractions = []  # list of interactions for above gates
     roomText = 0  # text to represent what room the player is in
-    scoreText = 0
-    projectileCollision = ProjectileCollision(player, Enemies)
+    #scoreText = 0
+    projectileCollision = ProjectileCollision(player)
 
     # called from within level# classes
     # meleeEnemiesList: the list of enemies from the level
@@ -123,7 +125,7 @@ class Levels:
         for gate in Levels.Gates:
             gate.draw(canvas)
         canvas.draw_text("Room: " + str(Levels.roomText), (10, 9), 15, "White")
-        canvas.draw_text("Score: " + str(Levels.scoreText), (930, 9), 15, "White")
+        canvas.draw_text("Score: " + str(get_score()), (930, 9), 15, "White")
 
     @staticmethod
     def restart():
@@ -144,4 +146,3 @@ class Levels:
         Levels.Gates = []  # list of gates to move player between levels
         Levels.GateInteractions = []  # list of interactions for above gates
         Levels.roomText = 0  # text to represent what room the player is in
-        Levels.scoreText = 0

@@ -1,4 +1,6 @@
 from enemy import Enemy
+from globals import *
+from scores import *
 
 class Health:
     def __init__(self):
@@ -9,10 +11,13 @@ class Health:
         if self.health == 0:
             if who == "RangedEnemy":
                 rangedEnemies.remove(obj)
+                set_score(20)
             elif who == "MeleeEnemy":
                 meleeEnemies.remove(obj)
+                set_score(10)
             else:
                 print("Dead Player")
+                reset_score()
                 pass
     '''
     def damaged(self):

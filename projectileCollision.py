@@ -1,5 +1,5 @@
 class ProjectileCollision:
-    def __init__(self, player, enemies):
+    def __init__(self, player):
         self.player = player
 
     def update(self, enemyProjectiles, friendlyProjectiles, rocks, rangedEnemies, meleeEnemies):
