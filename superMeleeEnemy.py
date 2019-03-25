@@ -1,0 +1,89 @@
+try:
+    import simplegui
+except ImportError:
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
+
+from vector import Vector
+from enemy import Enemy
+import globals
+from health import Health
+
+CANVAS_WIDTH = globals.CANVAS_DIMS[0]
+CANVAS_HEIGHT = globals.CANVAS_DIMS[1]
+
+
+class SuperMeleeEnemy(Enemy):
+    # pos: coordinates to spawn the enemy at
+    def __init__(self, pos):
+        super().__init__("https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/fancycircle.png",
+                         (80, 80), pos, 1)
+        self.radius = 40
+        self.border = 1
+        self.dazeCount = 0
+        self.count = 0
+        self.health = Health()
+        self.health.health = 10
+        self.currentlyAttacking = True
+        self.attackCount = 0
+
+    def dazed(self):
+        self.dazeCount = 1  # Change for different 'Dazed' times (Larger Number = Longer)
+
+    # other: object to check if colliding with
+    def collides(self, other):
+        if self == other:
+            return False
+        else:
+            dist = (self.pos - other.pos).length()
+            collisionDist = (self.radius + self.border) + (other.radius + other.border)
+            return dist <= collisionDist
+
+    # normal: vector to use as the normal
+    def bounce(self, normal):
+        self.vel.reflect(normal)
+
+    # target: Boolean for whether targetting is active
+    def set_target(self, target):
+        self.currentlyTargeting = target
+
+    def update(self):
+        super().update()
+        self.attack_cycle()
+        if self.outX():
+            self.pos.x %= CANVAS_WIDTH
+            if self.vel.x >= 0:
+                self.pos.x -= self.radius
+            else:
+                self.pos.x += self.radius
+        if self.outY():
+            self.pos.y %= CANVAS_HEIGHT
+            if self.vel.y >= 0:
+                self.pos.y -= 2 * self.radius
+            else:
+                self.pos.y += 2 * self.radius
+
+    def outX(self):
+        return (self.pos.x + self.radius < 0 or
+                self.pos.x - self.radius > CANVAS_WIDTH)
+
+    def outY(self):
+        return (self.pos.y + self.radius < 0 or
+                self.pos.y - self.radius > CANVAS_HEIGHT)
+
+    def target(self, pos):
+        if self.currentlyTargeting and self.dazeCount == 0:
+            self.vel = Vector(pos.get_p()[0] - self.pos.get_p()[0], pos.get_p()[1] - self.pos.get_p()[1]).normalize()
+        else:
+            self.daze_cycle()
+
+    def attacked(self):
+        if self.currentlyAttacking:
+            self.attackCount = 120
+            self.currentlyAttacking = False
+
+    def attack_cycle(self):
+        if self.attackCount > 0:
+            self.attackCount -= 1
+        else:
+            self.attackCount = 0
+            self.currentlyAttacking = True
