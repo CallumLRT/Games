@@ -15,7 +15,6 @@ from level3 import Level3
 from level4 import Level4
 from level5 import Level5
 from menu import Menu
-from music import Music
 
 # constants
 # add them in the global files so they can be used across multiple files
@@ -29,29 +28,21 @@ level3 = Level3()
 level4 = Level4()
 level5 = Level5()
 
-gameMusic = Music(
-    "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/music/DungeonMusic.ogg?token=AuVrB4f-o_7jKhvx9o8zywf9tICgCGp_ks5coU0IwA%3D%3D")
-
-menuMusic = Music(
-    "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/music/LobbyMusic.ogg?token=AuVrB01tDWNIZM_FEJe1dp2X42W41OC7ks5coVI9wA%3D%3D")
-menuMusic.play()
-
 
 def draw(canvas):
-    if menu.game_start:
+    if menu.game_start and not menu.game_end:
         Levels.update()
         Levels.draw(canvas)
-    else:
-        menu.draw(canvas)
+    menu.draw(canvas)
+    menu.update()
 
 
 def mouse_handler(pos):
-    if menu.BUTT_Pos[0] - menu.BUTT_CENTRE[0] <= pos[0] <= menu.BUTT_Pos[0] + menu.BUTT_CENTRE[0]:
-        if menu.BUTT_Pos[1] - menu.BUTT_CENTRE[1] <= pos[1] <= menu.BUTT_Pos[1] + menu.BUTT_CENTRE[1]:
-            level1.LoadLevel()
-            menu.game_start = True
-            menuMusic.pause()
-            gameMusic.play()
+    if not menu.game_start:
+        if menu.BUTT_Pos[0] - menu.BUTT_CENTRE[0] <= pos[0] <= menu.BUTT_Pos[0] + menu.BUTT_CENTRE[0]:
+            if menu.BUTT_Pos[1] - menu.BUTT_CENTRE[1] <= pos[1] <= menu.BUTT_Pos[1] + menu.BUTT_CENTRE[1]:
+                level1.LoadLevel()
+                menu.game_start = True
 
 
 frame = simplegui.create_frame('Game', CANVAS_DIMS[0], CANVAS_DIMS[1])
