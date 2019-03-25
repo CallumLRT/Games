@@ -3,8 +3,8 @@ from globals import *
 from scores import *
 
 class Health:
-    def __init__(self):
-        self.health = 4
+    def __init__(self, health=4):
+        self.health = health
 
     def damaged(self, who, obj, rangedEnemies, meleeEnemies):
         self.health = self.health - 1
