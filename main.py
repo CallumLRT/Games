@@ -29,29 +29,29 @@ level3 = Level3()
 level4 = Level4()
 level5 = Level5()
 
-
 gameMusic = Music(
-            "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/music/DungeonMusic.ogg?token=AuVrB4f-o_7jKhvx9o8zywf9tICgCGp_ks5coU0IwA%3D%3D")
+    "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/music/DungeonMusic.ogg?token=AuVrB4f-o_7jKhvx9o8zywf9tICgCGp_ks5coU0IwA%3D%3D")
 
 menuMusic = Music(
-            "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/music/LobbyMusic.ogg?token=AuVrB01tDWNIZM_FEJe1dp2X42W41OC7ks5coVI9wA%3D%3D")
+    "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/music/LobbyMusic.ogg?token=AuVrB01tDWNIZM_FEJe1dp2X42W41OC7ks5coVI9wA%3D%3D")
+menuMusic.play()
+
 
 def draw(canvas):
     if menu.game_start:
-        menuMusic.pause()
-        gameMusic.play()
         Levels.update()
         Levels.draw(canvas)
     else:
-        gameMusic.pause()
-        menuMusic.play()
         menu.draw(canvas)
+
 
 def mouse_handler(pos):
     if menu.BUTT_Pos[0] - menu.BUTT_CENTRE[0] <= pos[0] <= menu.BUTT_Pos[0] + menu.BUTT_CENTRE[0]:
         if menu.BUTT_Pos[1] - menu.BUTT_CENTRE[1] <= pos[1] <= menu.BUTT_Pos[1] + menu.BUTT_CENTRE[1]:
             level1.LoadLevel()
             menu.game_start = True
+            menuMusic.pause()
+            gameMusic.play()
 
 
 frame = simplegui.create_frame('Game', CANVAS_DIMS[0], CANVAS_DIMS[1])
