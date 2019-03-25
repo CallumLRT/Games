@@ -21,6 +21,7 @@ class Projectile:
         self.vel = target.copy().subtract(pos).normalize().multiply(speed)
         self.pos = pos.copy()
         self.speed = speed
+        self.imgRot = 0
         if self.vel.x == 0.0:
             if self.vel.y == 1*speed:
                 self.imgRot = math.pi/2
