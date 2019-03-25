@@ -6,6 +6,7 @@ except ImportError:
 from levels import Levels
 from rock import Rock
 from meleeEnemy import MeleeEnemy
+from superMeleeEnemy import SuperMeleeEnemy
 from rangedEnemy import RangedEnemy
 from gates import Gate
 from room import Room
@@ -16,8 +17,11 @@ import globals
 class Level4(Levels):
     def __init__(self):
         Levels.levels.append(self)
-        self.MeleeEnemies = [MeleeEnemy((globals.CANVAS_DIMS[0] / 2, globals.CANVAS_DIMS[1] / 2))]
-        self.RangedEnemies = []
+        self.MeleeEnemies = [MeleeEnemy(((globals.CANVAS_DIMS[0] / 9) * 2, (globals.CANVAS_DIMS[1] / 9) * 1)),
+                             MeleeEnemy(((globals.CANVAS_DIMS[0] / 9) * 8, (globals.CANVAS_DIMS[1] / 9) * 3)),
+                             SuperMeleeEnemy(((globals.CANVAS_DIMS[0] / 9) * 4, (globals.CANVAS_DIMS[1] / 9) * 7)),
+                             SuperMeleeEnemy(((globals.CANVAS_DIMS[0] / 9) * 5, (globals.CANVAS_DIMS[1] / 9) * 4))]
+        self.RangedEnemies = [RangedEnemy(((globals.CANVAS_DIMS[0] / 9) * 6, (globals.CANVAS_DIMS[1] / 9) * 3))]
         self.Rocks = [Rock(((globals.CANVAS_DIMS[0] / 2), (globals.CANVAS_DIMS[1] / 5) * 3)),
                       Rock(((globals.CANVAS_DIMS[0] / 9) * 2, (globals.CANVAS_DIMS[1] / 9) * 3)),
                       Rock(((globals.CANVAS_DIMS[0] / 5) * 4, (globals.CANVAS_DIMS[1] / 7) * 5)),
