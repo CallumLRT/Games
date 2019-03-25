@@ -22,6 +22,7 @@ class Levels:
     MeleeEnemies = []  # list of melee enemies
     ObjInteractions = []  # just initialising var to store interactions between melee enemies
     RangedEnemies = []  # list of ranged enemies
+    Enemies = []
     Rocks = []  # List of rocks
     FriendlyProjectiles = []  # list of projectiles
     EnemyProjectiles = []
@@ -32,7 +33,7 @@ class Levels:
     GateInteractions = []  # list of interactions for above gates
     roomText = 0  # text to represent what room the player is in
     scoreText = 0
-    projectileCollision = ProjectileCollision(EnemyProjectiles, player)
+    projectileCollision = ProjectileCollision(player, Enemies)
 
     # called from within level# classes
     # meleeEnemiesList: the list of enemies from the level
@@ -47,15 +48,18 @@ class Levels:
         Levels.room = None
         Levels.ObjInteractions = []
         Levels.allObj = []
+        Levels.enemies = []
         for rock in rockList:
             Levels.Rocks.append(rock)
             Levels.allObj.append(rock)
         for enemy in meleeEnemiesList:
             Levels.MeleeEnemies.append(enemy)
             Levels.allObj.append(enemy)
+            Levels.enemies.append(enemy)
         for enemy in rangedEnemiesList:
             Levels.RangedEnemies.append(enemy)
             Levels.allObj.append(enemy)
+            Levels.enemies.append(enemy)
         Levels.Gates = []
         for gate in gateList:
             Levels.Gates.append(gate)
