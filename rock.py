@@ -16,7 +16,7 @@ class Rock:
         self.IMG = simplegui.load_image("https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/rock.png")
         self.IMG_DIMS = (self.IMG.get_width(), self.IMG.get_height())
         self.IMG_CENTRE = (self.IMG_DIMS[0] / 2, self.IMG_DIMS[1] / 2)
-        self.DIMS = (50, 50)
+        self.DIMS = (40, 40)
         self.vel = Vector(0, 0)
         self.pos = Vector(pos[0], pos[1])
         self.speed = 1
