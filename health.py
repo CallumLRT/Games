@@ -17,8 +17,6 @@ class Health:
                 Scores.score += 10
             else:
                 print("Dead Player")
-                Scores.score = 0
-                pass
     '''
     def damaged(self):
         self.health = self.health - 1

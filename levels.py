@@ -10,7 +10,7 @@ from playerInteraction import PlayerInteraction
 from walls import Wall
 from interactionSet import *
 from projectileCollision import ProjectileCollision
-from globals import *
+import globals
 from scores import *
 
 class Levels:
@@ -150,3 +150,4 @@ class Levels:
         Levels.Gates = []  # list of gates to move player between levels
         Levels.GateInteractions = []  # list of interactions for above gates
         Levels.roomText = 0  # text to represent what room the player is in
+        Scores.score = 0
