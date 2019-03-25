@@ -11,13 +11,13 @@ class Health:
         if self.health == 0:
             if who == "RangedEnemy":
                 rangedEnemies.remove(obj)
-                set_score(20)
+                Scores.score += 20
             elif who == "MeleeEnemy":
                 meleeEnemies.remove(obj)
-                set_score(10)
+                Scores.score += 10
             else:
                 print("Dead Player")
-                reset_score()
+                Scores.score = 0
                 pass
     '''
     def damaged(self):

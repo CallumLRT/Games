@@ -6,6 +6,7 @@ except ImportError:
 import globals
 from music import Music
 from levels import Levels
+from scores import *
 
 CANVAS_DIMS = globals.CANVAS_DIMS
 
@@ -55,7 +56,7 @@ class Menu:
                               self.END_Size)
             canvas.draw_image(self.BUTT, self.BUTT_CENTRE, self.BUTT_DIMS, self.END_BUTT_Pos,
                               self.BUTT_Size)
-
+            canvas.draw_text("Score: " + str(Scores.score), (self.END_DIMS[0]/2 + 100, 50), 50, "White")
 
     def update(self):
         if not self.menu_music_playing and not self.game_start:

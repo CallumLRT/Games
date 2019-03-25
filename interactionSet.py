@@ -24,7 +24,7 @@ class UPair:
 
 class InteractionSet:
     def __init__(self, allObj):
-        self.allObj = set(allObj) # Turns list into a set
+        self.allObj = set(allObj)  # Turns list into a set
         self.inCollision = set()
         self.count = 0
 

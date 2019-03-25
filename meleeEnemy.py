@@ -22,6 +22,8 @@ class MeleeEnemy(Enemy):
         self.dazeCount = 0
         self.count = 0
         self.health = Health()
+        self.currentlyAttacking = True
+        self.attackCount = 0
 
     def dazed(self):
         self.dazeCount = 1  # Change for different 'Dazed' times (Larger Number = Longer)
@@ -45,6 +47,7 @@ class MeleeEnemy(Enemy):
 
     def update(self):
         super().update()
+        self.attack_cycle()
         if self.outX():
             self.pos.x %= CANVAS_WIDTH
             if self.vel.x >= 0:
@@ -71,3 +74,15 @@ class MeleeEnemy(Enemy):
             self.vel = Vector(pos.get_p()[0] - self.pos.get_p()[0], pos.get_p()[1] - self.pos.get_p()[1]).normalize()
         else:
             self.daze_cycle()
+
+    def attacked(self):
+        if self.currentlyAttacking:
+            self.attackCount = 120
+            self.currentlyAttacking = False
+
+    def attack_cycle(self):
+        if self.attackCount > 0:
+            self.attackCount -= 1
+        else:
+            self.attackCount = 0
+            self.currentlyAttacking = True
