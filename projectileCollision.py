@@ -8,11 +8,10 @@ class ProjectileCollision:
                 self.player.health.damaged("Player", self.player, rangedEnemies, meleeEnemies)
                 if projectile in enemyProjectiles:  # in case a projectile hits two or more things at once
                     enemyProjectiles.remove(projectile)
-            else:
-                for rock in rocks:
-                    if projectile.collides(rock):
-                        if projectile in enemyProjectiles:
-                            enemyProjectiles.remove(projectile)
+            for rock in rocks:
+                if projectile.collides(rock):
+                    if projectile in enemyProjectiles:
+                        enemyProjectiles.remove(projectile)
 
         for projectile in friendlyProjectiles:
             for enemy in rangedEnemies:
@@ -20,19 +19,14 @@ class ProjectileCollision:
                     enemy.health.damaged("RangedEnemy", enemy, rangedEnemies, meleeEnemies)
                     if projectile in friendlyProjectiles:  # in case a projectile hits two or more things at once
                         friendlyProjectiles.remove(projectile)
-                else:
-                    for rock in rocks:
-                        if projectile.collides(rock):
-                            if projectile in friendlyProjectiles:
-                                friendlyProjectiles.remove(projectile)
 
             for enemy in meleeEnemies:
                 if projectile.collides(enemy):
                     enemy.health.damaged("MeleeEnemy", enemy, rangedEnemies, meleeEnemies)
                     if projectile in friendlyProjectiles:  # in case a projectile hits two or more things at once
                         friendlyProjectiles.remove(projectile)
-                else:
-                    for rock in rocks:
-                        if projectile.collides(rock):
-                            if projectile in friendlyProjectiles:
-                                friendlyProjectiles.remove(projectile)
+
+            for rock in rocks:
+                if projectile.collides(rock):
+                    if projectile in friendlyProjectiles:
+                        friendlyProjectiles.remove(projectile)

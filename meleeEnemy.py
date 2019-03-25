@@ -45,7 +45,6 @@ class MeleeEnemy(Enemy):
 
     def update(self):
         super().update()
-        #self.pos.add(self.vel)
         if self.outX():
             self.pos.x %= CANVAS_WIDTH
             if self.vel.x >= 0:
