@@ -15,9 +15,6 @@ class Health:
             elif who == "MeleeEnemy":
                 meleeEnemies.remove(obj)
                 Scores.score += 10
-            elif who == "SuperMeleeEnemy":
-                meleeEnemies.remove(obj)
-                Scores.score += 15
             else:
                 print("Dead Player")
     '''
