@@ -24,4 +24,4 @@ class Level5(Levels):
 
     def LoadLevel(self):
         super().LoadLevel(self.MeleeEnemies, self.RangedEnemies, self.Gates, self.Rocks, self.Room)
-        Levels.printText = 5
+        Levels.roomText = 5

@@ -28,7 +28,8 @@ class Levels:
         wall_interactions.append(Interaction(player, wall))
     Gates = []  # list of gates to move player between levels
     GateInteractions = []  # list of interactions for above gates
-    printText = 0  # text to represent what level the player is on
+    roomText = 0  # text to represent what room the player is in
+    scoreText = 0
 
     # called from within level# classes
     # meleeEnemiesList: the list of enemies from the level
@@ -62,8 +63,6 @@ class Levels:
     def update():
         Levels.player.update()
         Levels.playerInteraction.update()
-        #                       for rock in Levels.Rocks:
-            #                       rock.update()
         if Levels.player.cooldown <= 0 and (
                 Levels.kbd.arrow_up or Levels.kbd.arrow_right or Levels.kbd.arrow_down or Levels.kbd.arrow_left):
             Levels.Projectiles.append(Levels.playerInteraction.shoot())
@@ -106,4 +105,5 @@ class Levels:
             wall.draw(canvas)
         for gate in Levels.Gates:
             gate.draw(canvas)
-        canvas.draw_text(str(Levels.printText), (10, 15), 20, "White")
+        canvas.draw_text("Room: " + str(Levels.roomText), (10, 9), 15, "White")
+        canvas.draw_text("Score: " + str(Levels.scoreText), (930, 9), 15, "White")
