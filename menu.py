@@ -4,7 +4,6 @@ except ImportError:
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 import globals
-import random
 from music import Music
 from levels import Levels
 
