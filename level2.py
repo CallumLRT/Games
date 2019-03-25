@@ -19,7 +19,10 @@ class Level2(Levels):
         self.MeleeEnemies = [MeleeEnemy((globals.CANVAS_DIMS[0] / 3, globals.CANVAS_DIMS[1] / 2)),
                              MeleeEnemy(((globals.CANVAS_DIMS[0] / 3 * 2), globals.CANVAS_DIMS[1] / 2))]
         self.RangedEnemies = [RangedEnemy((globals.CANVAS_DIMS[0] / 2, globals.CANVAS_DIMS[1] / 2))]
-        self.Rocks = []
+        self.Rocks = [Rock(((globals.CANVAS_DIMS[0] / 3) * 2, (globals.CANVAS_DIMS[1] / 2))),
+                      Rock(((globals.CANVAS_DIMS[0] / 9) * 7, (globals.CANVAS_DIMS[1] / 5) * 2)),
+                      Rock(((globals.CANVAS_DIMS[0] / 7) * 2, (globals.CANVAS_DIMS[1] / 6) * 5)),
+                      Rock(((globals.CANVAS_DIMS[0] / 5) * 3, (globals.CANVAS_DIMS[1] / 9) * 2))]
         self.Gates = [Gate(2, 1, 0), Gate(1, 1, 2)]
         self.Room = Room()
 

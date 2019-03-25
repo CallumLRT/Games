@@ -18,7 +18,10 @@ class Level4(Levels):
         Levels.levels.append(self)
         self.MeleeEnemies = [MeleeEnemy((globals.CANVAS_DIMS[0] / 2, globals.CANVAS_DIMS[1] / 2))]
         self.RangedEnemies = []
-        self.Rocks = []
+        self.Rocks = [Rock(((globals.CANVAS_DIMS[0] / 2), (globals.CANVAS_DIMS[1] / 5) * 3)),
+                      Rock(((globals.CANVAS_DIMS[0] / 9) * 2, (globals.CANVAS_DIMS[1] / 9) * 3)),
+                      Rock(((globals.CANVAS_DIMS[0] / 5) * 4, (globals.CANVAS_DIMS[1] / 7) * 5)),
+                      Rock(((globals.CANVAS_DIMS[0] / 7) * 2, (globals.CANVAS_DIMS[1] / 3) * 1))]
         self.Gates = [Gate(2, 3, 2)]
         self.Room = Room()
 
