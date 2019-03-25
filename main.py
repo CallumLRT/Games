@@ -30,19 +30,19 @@ level5 = Level5()
 
 
 def draw(canvas):
-    if menu.game_start:
+    if menu.game_start and not menu.game_end:
         Levels.update()
         Levels.draw(canvas)
-    else:
-        menu.draw(canvas)
+    menu.draw(canvas)
     menu.update()
 
 
 def mouse_handler(pos):
-    if menu.BUTT_Pos[0] - menu.BUTT_CENTRE[0] <= pos[0] <= menu.BUTT_Pos[0] + menu.BUTT_CENTRE[0]:
-        if menu.BUTT_Pos[1] - menu.BUTT_CENTRE[1] <= pos[1] <= menu.BUTT_Pos[1] + menu.BUTT_CENTRE[1]:
-            level1.LoadLevel()
-            menu.game_start = True
+    if not menu.game_start:
+        if menu.BUTT_Pos[0] - menu.BUTT_CENTRE[0] <= pos[0] <= menu.BUTT_Pos[0] + menu.BUTT_CENTRE[0]:
+            if menu.BUTT_Pos[1] - menu.BUTT_CENTRE[1] <= pos[1] <= menu.BUTT_Pos[1] + menu.BUTT_CENTRE[1]:
+                level1.LoadLevel()
+                menu.game_start = True
 
 
 frame = simplegui.create_frame('Game', CANVAS_DIMS[0], CANVAS_DIMS[1])
