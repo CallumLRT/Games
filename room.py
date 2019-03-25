@@ -5,6 +5,7 @@ except ImportError:
 
 import globals
 import random
+
 CANVAS_DIMS = globals.CANVAS_DIMS
 
 
@@ -24,9 +25,9 @@ class Room:
             self.IMG = simplegui.load_image(
                 'https://raw.githubusercontent.com/CalhamZeKoala/Games/master/images/Room6.png?token=AexQrdaFTfNrqWUrjKaJdpd7lRzI8rjlks5cngZawA%3D%3D')
 
-        self.IMG_CENTRE = (300, 200)
-        self.IMG_DIMS = (600, 400)
-        self.IMG_Size = (600, 400)
+        self.IMG_CENTRE = (self.IMG.get_width() / 2, self.IMG.get_height() / 2)
+        self.IMG_DIMS = (self.IMG.get_width(), self.IMG.get_height())
+        self.IMG_Size = (CANVAS_DIMS[0], CANVAS_DIMS[1])
 
     def draw(self, canvas):
         canvas.draw_image(self.IMG, self.IMG_CENTRE, self.IMG_DIMS, (CANVAS_DIMS[0] / 2, CANVAS_DIMS[1] / 2),

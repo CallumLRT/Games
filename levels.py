@@ -9,13 +9,12 @@ from keyboard import Keyboard
 from playerInteraction import PlayerInteraction
 from walls import Wall
 from interactionSet import *
-from room import Room
 
 class Levels:
     # static variable:
     player = Player()  # the player
     kbd = Keyboard()  # keyboard class to check movement for player
-    room = Room()  # background for level
+    room = None # background for level
     Walls = [Wall(0), Wall(1), Wall(2), Wall(3)]  # all the walls
     playerInteraction = PlayerInteraction(player, kbd, Walls)  # interaction to keep player within the walls
     levels = []  # list of levels. levels get appended here when they load
@@ -35,11 +34,12 @@ class Levels:
     # meleeEnemiesList: the list of enemies from the level
     # rangedEnemiesList: the list of enemies from the level
     # gateList: list of gates from the level
-    def LoadLevel(self, meleeEnemiesList, rangedEnemiesList, gateList, rockList):
+    def LoadLevel(self, meleeEnemiesList, rangedEnemiesList, gateList, rockList, room):
         Levels.MeleeEnemies = []
         Levels.RangedEnemies = []
         Levels.Rocks = []
         Levels.Projectiles = []
+        Levels.room = None
         Levels.ObjInteractions = []
         Levels.allObj = []
         for rock in rockList:
@@ -54,6 +54,7 @@ class Levels:
         Levels.Gates = []
         for gate in gateList:
             Levels.Gates.append(gate)
+        Levels.room = room
         Levels.allObj.append(Levels.player)
         Levels.ObjInteractions.append(InteractionSet(Levels.allObj))
 
