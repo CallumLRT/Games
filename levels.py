@@ -48,18 +48,18 @@ class Levels:
         Levels.room = None
         Levels.ObjInteractions = []
         Levels.allObj = []
-        Levels.enemies = []
+        Levels.Enemies = []
         for rock in rockList:
             Levels.Rocks.append(rock)
             Levels.allObj.append(rock)
         for enemy in meleeEnemiesList:
             Levels.MeleeEnemies.append(enemy)
             Levels.allObj.append(enemy)
-            Levels.enemies.append(enemy)
+            Levels.Enemies.append(enemy)
         for enemy in rangedEnemiesList:
             Levels.RangedEnemies.append(enemy)
             Levels.allObj.append(enemy)
-            Levels.enemies.append(enemy)
+            Levels.Enemies.append(enemy)
         Levels.Gates = []
         for gate in gateList:
             Levels.Gates.append(gate)
@@ -101,7 +101,8 @@ class Levels:
                 Levels.FriendlyProjectiles.remove(projectile)
         for gate in Levels.Gates:
             gate.update()
-        Levels.projectileCollision.update(Levels.EnemyProjectiles, Levels.FriendlyProjectiles)
+        Levels.projectileCollision.update(Levels.EnemyProjectiles, Levels.FriendlyProjectiles, Levels.Rocks,
+                                          Levels.RangedEnemies, Levels.MeleeEnemies)
 
     @staticmethod
     def draw(canvas):
