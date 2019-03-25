@@ -151,3 +151,4 @@ class Levels:
         Levels.GateInteractions = []  # list of interactions for above gates
         Levels.roomText = 0  # text to represent what room the player is in
         Scores.score = 0
+        Levels.projectileCollision = ProjectileCollision(Levels.player)
