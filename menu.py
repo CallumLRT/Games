@@ -92,3 +92,5 @@ class Menu:
         if Levels.player.health.health <= 0:
             self.game_end = True
             self.game_start = True
+        if len(Levels.Enemies) == 0 and self.game_start:
+            self.won = True
