@@ -16,6 +16,7 @@ class Menu:
         self.game_start = False
         self.game_end = False
         self.menu_music_playing = False
+        self.won = False
         self.game_music = Music(
             "https://raw.githubusercontent.com/CalhamZeKoala/Games/master/music/DungeonMusic.ogg?token=AuVrB4f-o_7jKhvx9o8zywf9tICgCGp_ks5coU0IwA%3D%3D")
 
@@ -45,6 +46,14 @@ class Menu:
 
         self.END_BUTT_Pos = (CANVAS_DIMS[0] / 2, (CANVAS_DIMS[1] / 6) * 5)
 
+
+        self.WIN = simplegui.load_image(
+            'https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/win.jpg')
+        self.WIN_CENTRE = (self.WIN.get_width() / 2, self.WIN.get_height() / 2)
+        self.WIN_DIMS = (self.WIN.get_width(), self.WIN.get_height())
+        self.WIN_Size = (CANVAS_DIMS[0], CANVAS_DIMS[1])
+        self.WIN_Pos = (CANVAS_DIMS[0] / 2, CANVAS_DIMS[1] / 2)  # where to draw image
+
     def draw(self, canvas):
         if not self.game_start:
             canvas.draw_image(self.IMG, self.IMG_CENTRE, self.IMG_DIMS, self.IMG_Pos,
@@ -57,6 +66,13 @@ class Menu:
             canvas.draw_image(self.BUTT, self.BUTT_CENTRE, self.BUTT_DIMS, self.END_BUTT_Pos,
                               self.BUTT_Size)
             canvas.draw_text("Score: " + str(Scores.score), (self.END_DIMS[0]/2 + 100, 50), 50, "White")
+        if self.won:
+            canvas.draw_image(self.WIN, self.WIN_CENTRE, self.WIN_DIMS, self.WIN_Pos,
+                              self.WIN_Size)
+            canvas.draw_image(self.BUTT, self.BUTT_CENTRE, self.BUTT_DIMS, self.END_BUTT_Pos,
+                              self.BUTT_Size)
+            canvas.draw_text("Score: " + str(Scores.score), (self.END_DIMS[0]/2 + 100, 50), 50, "White")
+
 
     def update(self):
         if not self.menu_music_playing and not self.game_start:
@@ -67,7 +83,7 @@ class Menu:
             self.menu_music.rewind()
             self.menu_music_playing = False
             self.game_music.play()
-        if self.game_end and not self.menu_music_playing:
+        if (self.game_end or self.won) and not self.menu_music_playing:
             self.game_music.pause()
             self.game_music.rewind()
             self.menu_music.play()

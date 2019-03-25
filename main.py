@@ -49,7 +49,7 @@ def mouse_handler(pos):
             if menu.BUTT_Pos[1] - menu.BUTT_CENTRE[1] <= pos[1] <= menu.BUTT_Pos[1] + menu.BUTT_CENTRE[1]:
                 level1.LoadLevel()
                 menu.game_start = True
-    if menu.game_end:
+    if menu.game_end or menu.won:
         if menu.END_BUTT_Pos[0] - menu.BUTT_CENTRE[0] <= pos[0] <= menu.END_BUTT_Pos[0] + menu.BUTT_CENTRE[0]:
             if menu.END_BUTT_Pos[1] - menu.BUTT_CENTRE[1] <= pos[1] <= menu.END_BUTT_Pos[1] + menu.BUTT_CENTRE[1]:
                 menu.game_music.pause()
