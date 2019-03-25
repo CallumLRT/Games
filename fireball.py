@@ -13,3 +13,5 @@ class Fireball(Projectile):
         super().__init__(
             "https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/fireball-clipart-pixel-sprite-351661-3575577.png",
             (40, 30), origin, 7, target, 100)
+        self.radius = 20
+        self.border = 0

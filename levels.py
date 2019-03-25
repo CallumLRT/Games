@@ -9,6 +9,7 @@ from keyboard import Keyboard
 from playerInteraction import PlayerInteraction
 from walls import Wall
 from interactionSet import *
+from projectileCollision import ProjectileCollision
 
 class Levels:
     # static variable:
@@ -22,7 +23,8 @@ class Levels:
     ObjInteractions = []  # just initialising var to store interactions between melee enemies
     RangedEnemies = []  # list of ranged enemies
     Rocks = []  # List of rocks
-    Projectiles = []  # list of projectiles
+    FriendlyProjectiles = []  # list of projectiles
+    EnemyProjectiles = []
     wall_interactions = []  # list of wall interactions to help keep player within the walls
     for wall in Walls:
         wall_interactions.append(Interaction(player, wall))
@@ -30,6 +32,7 @@ class Levels:
     GateInteractions = []  # list of interactions for above gates
     roomText = 0  # text to represent what room the player is in
     scoreText = 0
+    projectileCollision = ProjectileCollision(EnemyProjectiles, player)
 
     # called from within level# classes
     # meleeEnemiesList: the list of enemies from the level
@@ -39,7 +42,8 @@ class Levels:
         Levels.MeleeEnemies = []
         Levels.RangedEnemies = []
         Levels.Rocks = []
-        Levels.Projectiles = []
+        Levels.FriendlyProjectiles = []
+        Levels.EnemyProjectiles = []
         Levels.room = None
         Levels.ObjInteractions = []
         Levels.allObj = []
@@ -65,7 +69,7 @@ class Levels:
         Levels.playerInteraction.update()
         if Levels.player.cooldown <= 0 and (
                 Levels.kbd.arrow_up or Levels.kbd.arrow_right or Levels.kbd.arrow_down or Levels.kbd.arrow_left):
-            Levels.Projectiles.append(Levels.playerInteraction.shoot())
+            Levels.FriendlyProjectiles.append(Levels.playerInteraction.shoot())
         for interaction in Levels.wall_interactions:
             interaction.update()
         for melee in Levels.MeleeEnemies:
@@ -80,14 +84,20 @@ class Levels:
             if ranged.currentlyTargeting:
                 ranged.target(Levels.player.pos)
             if ranged.cooldown <= 0:
-                Levels.Projectiles.append(ranged.shoot(Levels.player.pos))
+                Levels.EnemyProjectiles.append(ranged.shoot(Levels.player.pos))
+                #Levels.Projectiles.append(ranged.shoot(Levels.player.pos))
             ranged.update()
-        for projectile in Levels.Projectiles:
+        for projectile in Levels.EnemyProjectiles:
             projectile.update()
             if projectile.frame_life <= 0:
-                Levels.Projectiles.remove(projectile)
+                Levels.EnemyProjectiles.remove(projectile)
+        for projectile in Levels.FriendlyProjectiles:
+            projectile.update()
+            if projectile.frame_life <= 0:
+                Levels.FriendlyProjectiles.remove(projectile)
         for gate in Levels.Gates:
             gate.update()
+        Levels.projectileCollision.update(Levels.EnemyProjectiles, Levels.FriendlyProjectiles)
 
     @staticmethod
     def draw(canvas):
@@ -99,7 +109,9 @@ class Levels:
             melee.draw(canvas)
         for ranged in Levels.RangedEnemies:
             ranged.draw(canvas)
-        for projectiles in Levels.Projectiles:
+        for projectiles in Levels.EnemyProjectiles:
+            projectiles.draw(canvas)
+        for projectiles in Levels.FriendlyProjectiles:
             projectiles.draw(canvas)
         for wall in Levels.Walls:
             wall.draw(canvas)
