@@ -25,4 +25,4 @@ class Level3(Levels):
 
     def LoadLevel(self):
         super().LoadLevel(self.MeleeEnemies, self.RangedEnemies, self.Gates, self.Rocks, self.Room)
-        Levels.printText = 3
+        Levels.roomText = 3
