@@ -13,7 +13,7 @@ CANVAS_HEIGHT = globals.CANVAS_DIMS[1]
 
 class Rock:
     def __init__(self, pos):
-        self.IMG = simplegui.load_image("https://raw.githubusercontent.com/CalhamZeKoala/Games/master/images/rock.png?token=AexQrZ5LrNpxB4tlXs7pVENJNtB7v00yks5cnisHwA%3D%3D")
+        self.IMG = simplegui.load_image("https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/rock.png")
         self.IMG_DIMS = (self.IMG.get_width(), self.IMG.get_height())
         self.IMG_CENTRE = (self.IMG_DIMS[0] / 2, self.IMG_DIMS[1] / 2)
         self.DIMS = (50, 50)
