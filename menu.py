@@ -61,16 +61,17 @@ class Menu:
         if not self.menu_music_playing and not self.game_start:
             self.menu_music.play()
             self.menu_music_playing = True
-        if self.game_start and self.menu_music_playing:
+        if self.game_start and self.menu_music_playing and not self.game_end:
             self.menu_music.pause()
             self.menu_music.rewind()
             self.menu_music_playing = False
             self.game_music.play()
-        if self.game_end:
+        if self.game_end and not self.menu_music_playing:
             self.game_music.pause()
             self.game_music.rewind()
             self.menu_music.play()
             self.menu_music_playing = True
+            self.game_start = False
         if Levels.player.health.health <= 0:
             self.game_end = True
             self.game_start = True

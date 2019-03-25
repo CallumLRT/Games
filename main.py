@@ -52,6 +52,8 @@ def mouse_handler(pos):
     if menu.game_end:
         if menu.END_BUTT_Pos[0] - menu.BUTT_CENTRE[0] <= pos[0] <= menu.END_BUTT_Pos[0] + menu.BUTT_CENTRE[0]:
             if menu.END_BUTT_Pos[1] - menu.BUTT_CENTRE[1] <= pos[1] <= menu.END_BUTT_Pos[1] + menu.BUTT_CENTRE[1]:
+                menu.game_music.pause()
+                menu.menu_music.pause()
                 menu = Menu()
                 Levels.restart()
                 level1 = Level1()
@@ -59,6 +61,8 @@ def mouse_handler(pos):
                 level3 = Level3()
                 level4 = Level4()
                 level5 = Level5()
+                frame.set_keydown_handler(Levels.kbd.keyDown)
+                frame.set_keyup_handler(Levels.kbd.keyUp)
 
 
 frame = simplegui.create_frame('Game', CANVAS_DIMS[0], CANVAS_DIMS[1])
