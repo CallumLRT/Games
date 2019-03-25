@@ -6,6 +6,7 @@ except ImportError:
 from vector import Vector
 from enemy import Enemy
 from fireball import Fireball
+from health import Health
 import math
 from random import randint
 
@@ -21,6 +22,7 @@ class RangedEnemy(Enemy):
         self.radius = 25
         self.border = 1
         self.dazeCount = 0
+        self.health = Health()
 
     def dazed(self):
         self.dazeCount = 5  # Change for different 'Dazed' times (Larger Number = Longer)

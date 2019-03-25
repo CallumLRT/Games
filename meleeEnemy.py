@@ -6,6 +6,7 @@ except ImportError:
 from vector import Vector
 from enemy import Enemy
 import globals
+from health import Health
 
 CANVAS_WIDTH = globals.CANVAS_DIMS[0]
 CANVAS_HEIGHT = globals.CANVAS_DIMS[1]
@@ -20,6 +21,7 @@ class MeleeEnemy(Enemy):
         self.border = 1
         self.dazeCount = 0
         self.count = 0
+        self.health = Health()
 
     def dazed(self):
         self.dazeCount = 1  # Change for different 'Dazed' times (Larger Number = Longer)
@@ -43,7 +45,6 @@ class MeleeEnemy(Enemy):
 
     def update(self):
         super().update()
-        #self.pos.add(self.vel)
         if self.outX():
             self.pos.x %= CANVAS_WIDTH
             if self.vel.x >= 0:

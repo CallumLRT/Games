@@ -38,3 +38,11 @@ class Projectile:
     def update(self):
         self.pos.add(self.vel)
         self.frame_life -= 1
+
+    def collides(self, other):
+        if self == other:
+            return False
+        else:
+            dist = (self.pos - other.pos).length()
+            collisionDist = (self.radius + self.border) + (other.radius + other.border)
+            return dist <= collisionDist
