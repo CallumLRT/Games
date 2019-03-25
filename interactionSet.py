@@ -23,6 +23,7 @@ class InteractionSet:
     def __init__(self, allObj):
         self.allObj = set(allObj) # Turns list into a set
         self.inCollision = set()
+        self.count = 0
 
     def update(self):
         for obj in self.allObj:
@@ -39,7 +40,7 @@ class InteractionSet:
                     if UPair(obj1, obj2) not in self.inCollision:
                         self.inCollision.add(UPair(obj1, obj2))
                         n = (obj1.pos - obj2.pos).normalize()
-                        delta = n * (obj1.vel - obj2.vel).dot(n)
+                        delta = 2 * n * (obj1.vel - obj2.vel).dot(n)
                         obj1.vel.subtract(delta)
                         obj2.vel.add(delta)
                     else:

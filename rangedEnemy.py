@@ -14,7 +14,7 @@ class RangedEnemy(Enemy):
     # pos: coordinates to spawn at
     def __init__(self, pos):
         super().__init__("https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/bluecircle.png",
-                         (50, 50), pos, 2)
+                         (50, 50), pos, 1)
         self.cooldown = randint(100, 140)
         self.cooldown_max = self.cooldown
         self.radius = 25
@@ -22,7 +22,7 @@ class RangedEnemy(Enemy):
         self.dazeCount = 0
 
     def dazed(self):
-        self.dazeCount = 0  # Change for different 'Dazed' times (Larger Number = Longer)
+        self.dazeCount = 8  # Change for different 'Dazed' times (Larger Number = Longer)
 
     # target: coordinates to shoot at
     def shoot(self, target):
@@ -31,6 +31,7 @@ class RangedEnemy(Enemy):
 
     def set_target(self, target):
         self.currentlyTargeting = target
+
 
     def target(self, pos):
         if math.sqrt((self.pos.x - pos.x) ** 2 + (self.pos.y - pos.y) ** 2) < 200:

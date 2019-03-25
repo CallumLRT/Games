@@ -44,7 +44,8 @@ class MeleeEnemy(Enemy):
         self.currentlyTargeting = target
 
     def update(self):
-        self.pos.add(self.vel)
+        super().update()
+        #self.pos.add(self.vel)
         if self.outX():
             self.pos.x %= CANVAS_WIDTH
             if self.vel.x >= 0:
