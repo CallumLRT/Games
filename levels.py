@@ -15,6 +15,7 @@ from scores import *
 
 class Levels:
     # static variable:
+    # this really should be moved to globals but it will be annoying to edit everything
     player = Player()  # the player
     kbd = Keyboard()  # keyboard class to check movement for player
     room = None # background for level
@@ -34,7 +35,6 @@ class Levels:
     Gates = []  # list of gates to move player between levels
     GateInteractions = []  # list of interactions for above gates
     roomText = 0  # text to represent what room the player is in
-    #scoreText = 0
     projectileCollision = ProjectileCollision(player)
 
     # called from within level# classes
