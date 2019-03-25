@@ -22,9 +22,7 @@ class MeleeEnemy(Enemy):
         self.count = 0
 
     def dazed(self):
-        self.dazeCount = 8  # Change for different 'Dazed' times (Larger Number = Longer)
-
-
+        self.dazeCount = 1  # Change for different 'Dazed' times (Larger Number = Longer)
 
     # other: object to check if colliding with
     def collides(self, other):

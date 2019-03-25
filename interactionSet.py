@@ -1,6 +1,9 @@
 from enemy import Enemy
 from rangedEnemy import RangedEnemy
 from meleeEnemy import MeleeEnemy
+from rock import Rock
+from player import Player
+from vector import Vector
 
 class UPair:
     def __init__(self, fst, snd):
@@ -27,7 +30,8 @@ class InteractionSet:
 
     def update(self):
         for obj in self.allObj:
-            obj.update()
+            if not isinstance(obj, Rock):
+                obj.update()
         for obj1 in self.allObj:
             for obj2 in self.allObj:
                 if obj1.collides(obj2):
@@ -41,7 +45,23 @@ class InteractionSet:
                         self.inCollision.add(UPair(obj1, obj2))
                         n = (obj1.pos - obj2.pos).normalize()
                         delta = 2 * n * (obj1.vel - obj2.vel).dot(n)
-                        obj1.vel.subtract(delta)
-                        obj2.vel.add(delta)
+                        if isinstance(obj1, Rock):
+                            delta = delta * 2
+                        if isinstance(obj2, Rock):
+                            delta = delta * 2
+                        if not isinstance(obj1, Rock):
+                            if not isinstance(obj2, Rock):
+                                if not isinstance(obj1, Player):
+                                    if not isinstance(obj2, Player):
+                                        obj1.vel.subtract(delta)
+                                        obj2.vel.add(delta)
+                                    else:
+                                        obj1.vel.subtract(delta)
+                                else:
+                                    obj2.vel.add(delta)
+                            else:
+                                obj1.vel.subtract(delta)
+                        else:
+                            obj2.vel.add(delta)
                     else:
                         self.inCollision.discard(UPair(obj1, obj2))

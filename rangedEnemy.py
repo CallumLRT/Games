@@ -9,6 +9,7 @@ from fireball import Fireball
 import math
 from random import randint
 
+#https://raw.githubusercontent.com/CalhamZeKoala/GameImg/master/SpriteCran.png
 
 class RangedEnemy(Enemy):
     # pos: coordinates to spawn at
@@ -22,7 +23,7 @@ class RangedEnemy(Enemy):
         self.dazeCount = 0
 
     def dazed(self):
-        self.dazeCount = 8  # Change for different 'Dazed' times (Larger Number = Longer)
+        self.dazeCount = 5  # Change for different 'Dazed' times (Larger Number = Longer)
 
     # target: coordinates to shoot at
     def shoot(self, target):

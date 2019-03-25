@@ -38,6 +38,7 @@ class Player:
         self.healthSprite = HealthSpriteSheet(self.health)
         self.cooldown_max = 10
         self.cooldown = self.cooldown_max
+        self.border = 1
 
     def draw(self, canvas):
         self.PlayerSprite_current.draw(canvas, self.pos.get_p())
@@ -53,3 +54,10 @@ class Player:
         self.cooldown = self.cooldown_max
         return Fireball(self.pos, target)
 
+    def collides(self, other):
+        if self == other:
+            return False
+        else:
+            dist = (self.pos - other.pos).length()
+            collisionDist = (self.radius + self.border) + (other.radius + other.border)
+            return dist <= collisionDist

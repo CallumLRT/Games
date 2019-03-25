@@ -44,7 +44,7 @@ class Levels:
         Levels.allObj = []
         for rock in rockList:
             Levels.Rocks.append(rock)
-            #wLevels.allObj.append(rock)
+            Levels.allObj.append(rock)
         for enemy in meleeEnemiesList:
             Levels.MeleeEnemies.append(enemy)
             Levels.allObj.append(enemy)
@@ -54,14 +54,15 @@ class Levels:
         Levels.Gates = []
         for gate in gateList:
             Levels.Gates.append(gate)
+        Levels.allObj.append(Levels.player)
         Levels.ObjInteractions.append(InteractionSet(Levels.allObj))
 
     @staticmethod
     def update():
         Levels.player.update()
         Levels.playerInteraction.update()
-        for rock in Levels.Rocks:
-            rock.update()
+        #                       for rock in Levels.Rocks:
+            #                       rock.update()
         if Levels.player.cooldown <= 0 and (
                 Levels.kbd.arrow_up or Levels.kbd.arrow_right or Levels.kbd.arrow_down or Levels.kbd.arrow_left):
             Levels.Projectiles.append(Levels.playerInteraction.shoot())

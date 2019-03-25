@@ -16,7 +16,7 @@ class Level1(Levels):
         Levels.levels.append(self)
         self.MeleeEnemies = [MeleeEnemy((globals.CANVAS_DIMS[0] / 2, globals.CANVAS_DIMS[1] / 4))]
         self.RangedEnemies = []
-        self.Rocks = [Rock((globals.CANVAS_DIMS[0] / 2, globals.CANVAS_DIMS[1] / 4))]
+        self.Rocks = [Rock((globals.CANVAS_DIMS[0] / 4, globals.CANVAS_DIMS[1] / 4))]
         self.Gates = [Gate(0, 0, 1)]
 
     def LoadLevel(self):
