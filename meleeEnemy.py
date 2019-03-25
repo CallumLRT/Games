@@ -19,19 +19,12 @@ class MeleeEnemy(Enemy):
         self.radius = 25
         self.border = 1
         self.dazeCount = 0
-        self.currentlyTargeting = True
         self.count = 0
 
     def dazed(self):
-        self.dazeCount = 8  # Change for different 'Dazed' times (Larger Number = Longer)
+        self.dazeCount = 1  # Change for different 'Dazed' times (Larger Number = Longer)
 
-    def daze_cycle(self):
-        if self.dazeCount > 0:
-            self.dazeCount -= 1
-        else:
-            self.currentlyTargeting = True
-
-    # other: object to check if colliding wiht
+    # other: object to check if colliding with
     def collides(self, other):
         if self == other:
             return False
@@ -48,11 +41,9 @@ class MeleeEnemy(Enemy):
     def set_target(self, target):
         self.currentlyTargeting = target
 
-    def count_cycle(self):
-        self.count -= 1
-
     def update(self):
-        self.pos.add(self.vel)
+        super().update()
+        #self.pos.add(self.vel)
         if self.outX():
             self.pos.x %= CANVAS_WIDTH
             if self.vel.x >= 0:
@@ -75,7 +66,7 @@ class MeleeEnemy(Enemy):
                 self.pos.y - self.radius > CANVAS_HEIGHT)
 
     def target(self, pos):
-        if self.currentlyTargeting and self.count == 0:
+        if self.currentlyTargeting and self.dazeCount == 0:
             self.vel = Vector(pos.get_p()[0] - self.pos.get_p()[0], pos.get_p()[1] - self.pos.get_p()[1]).normalize()
         else:
-            self.count_cycle()
+            self.daze_cycle()

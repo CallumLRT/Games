@@ -8,7 +8,7 @@ from interactions import Interaction
 from keyboard import Keyboard
 from playerInteraction import PlayerInteraction
 from walls import Wall
-from meleeInteractionSet import *
+from interactionSet import *
 
 class Levels:
     # static variable:
@@ -19,7 +19,7 @@ class Levels:
     playerInteraction = PlayerInteraction(player, kbd, Walls)  # interaction to keep player within the walls
     levels = []  # list of levels. levels get appended here when they load
     MeleeEnemies = []  # list of melee enemies
-    MeleeInteractions = []  # just initialising var to store interactions between melee enemies
+    ObjInteractions = []  # just initialising var to store interactions between melee enemies
     RangedEnemies = []  # list of ranged enemies
     Rocks = []  # List of rocks
     Projectiles = []  # list of projectiles
@@ -39,26 +39,31 @@ class Levels:
         Levels.RangedEnemies = []
         Levels.Rocks = []
         Levels.Projectiles = []
-        Levels.MeleeInteractions = []
         Levels.room = None
+        Levels.ObjInteractions = []
+        Levels.allObj = []
         for rock in rockList:
             Levels.Rocks.append(rock)
+            Levels.allObj.append(rock)
         for enemy in meleeEnemiesList:
             Levels.MeleeEnemies.append(enemy)
+            Levels.allObj.append(enemy)
         for enemy in rangedEnemiesList:
             Levels.RangedEnemies.append(enemy)
+            Levels.allObj.append(enemy)
         Levels.Gates = []
         for gate in gateList:
             Levels.Gates.append(gate)
-        Levels.MeleeInteractions.append(MeleeInteractionSet(meleeEnemiesList))
         Levels.room = room
+        Levels.allObj.append(Levels.player)
+        Levels.ObjInteractions.append(InteractionSet(Levels.allObj))
 
     @staticmethod
     def update():
         Levels.player.update()
         Levels.playerInteraction.update()
-        for rock in Levels.Rocks:
-            rock.update()
+        #                       for rock in Levels.Rocks:
+            #                       rock.update()
         if Levels.player.cooldown <= 0 and (
                 Levels.kbd.arrow_up or Levels.kbd.arrow_right or Levels.kbd.arrow_down or Levels.kbd.arrow_left):
             Levels.Projectiles.append(Levels.playerInteraction.shoot())
@@ -69,13 +74,15 @@ class Levels:
             if melee.currentlyTargeting:
                 melee.target(Levels.player.pos)
             melee.update()
-        for interaction in Levels.MeleeInteractions:
+        for interaction in Levels.ObjInteractions:
             interaction.update()
         for ranged in Levels.RangedEnemies:
-            ranged.target(Levels.player.pos)
-            ranged.update()
+            ranged.daze_cycle()
+            if ranged.currentlyTargeting:
+                ranged.target(Levels.player.pos)
             if ranged.cooldown <= 0:
                 Levels.Projectiles.append(ranged.shoot(Levels.player.pos))
+            ranged.update()
         for projectile in Levels.Projectiles:
             projectile.update()
             if projectile.frame_life <= 0:
